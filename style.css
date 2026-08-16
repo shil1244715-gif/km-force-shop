@@ -308,6 +308,71 @@ a {
   font-size: 0.9rem;
 }
 
+/* Guestbook */
+.guestbook-form {
+  display: flex;
+  gap: 12px;
+  max-width: 520px;
+  margin-top: 32px;
+}
+
+.guestbook-form input {
+  flex: 1;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: #fff;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.guestbook-form input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.guestbook-form button {
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.guestbook-list {
+  list-style: none;
+  max-width: 520px;
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.guestbook-item {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 0.92rem;
+}
+
+.guestbook-item .guestbook-message {
+  word-break: break-word;
+}
+
+.guestbook-item .guestbook-time {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.guestbook-empty {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin-top: 24px;
+}
+
 /* Contact */
 .contact-inner {
   text-align: center;

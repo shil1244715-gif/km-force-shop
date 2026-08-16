@@ -17,6 +17,7 @@
       <a href="#about">소개</a>
       <a href="#features">특징</a>
       <a href="#products">제품</a>
+      <a href="#guestbook">방명록</a>
       <a href="#contact">문의</a>
     </nav>
     <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">
@@ -126,6 +127,22 @@
     </div>
   </section>
 
+  <section class="section" id="guestbook">
+    <div class="container">
+      <p class="section-eyebrow">GUESTBOOK</p>
+      <h2 class="section-title">방명록</h2>
+      <p class="section-desc">혼잡스에 다녀가신 흔적을 남겨주세요.</p>
+
+      <form class="guestbook-form" id="guestbookForm">
+        <input type="text" name="message" placeholder="한마디 남겨주세요" maxlength="300" required>
+        <button type="submit" class="btn btn-primary">남기기</button>
+      </form>
+      <p class="form-status" id="guestbookStatus"></p>
+
+      <ul class="guestbook-list" id="guestbookList"></ul>
+    </div>
+  </section>
+
   <section class="section section-alt" id="contact">
     <div class="container contact-inner">
       <p class="section-eyebrow">CONTACT</p>
@@ -152,6 +169,8 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
