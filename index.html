@@ -17,6 +17,7 @@
       <a href="#about">소개</a>
       <a href="#features">특징</a>
       <a href="#products">제품</a>
+      <a href="#guestbook">방명록</a>
       <a href="#contact">문의</a>
     </nav>
     <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">
@@ -123,6 +124,22 @@
           <p>나만의 시간을 더 즐겁게 만들어주는 소품</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="section" id="guestbook">
+    <div class="container">
+      <p class="section-eyebrow">GUESTBOOK</p>
+      <h2 class="section-title">방명록</h2>
+      <p class="section-desc">혼잡스에 다녀가신 흔적을 남겨주세요.</p>
+
+      <form class="guestbook-form" id="guestbookForm">
+        <input type="text" name="message" placeholder="한마디 남겨주세요" maxlength="300" required>
+        <button type="submit" class="btn btn-primary">남기기</button>
+      </form>
+      <p class="form-status" id="guestbookStatus"></p>
+
+      <ul class="guestbook-list" id="guestbookList"></ul>
     </div>
   </section>
 
