@@ -873,6 +873,186 @@ a {
   word-break: keep-all;
 }
 
+.product-name a {
+  color: inherit;
+  transition: color 0.2s var(--ease-out-expo);
+}
+
+.product-name a:hover {
+  color: var(--color-orange);
+}
+
+/* Product detail page */
+.detail-not-found {
+  text-align: center;
+  padding: 100px 0;
+}
+
+.detail-not-found h1 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+
+.detail-not-found p {
+  color: var(--color-text-muted);
+  margin-bottom: 24px;
+}
+
+.detail-layout[hidden] {
+  display: none;
+}
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 48px;
+  padding-bottom: 80px;
+}
+
+.detail-photo {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-photo .product-photo-placeholder svg {
+  width: 100px;
+  height: 100px;
+  stroke-width: 1.1;
+}
+
+.detail-photo .product-badge {
+  top: 16px;
+  left: 16px;
+  font-size: 0.78rem;
+  padding: 6px 14px;
+}
+
+.detail-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-info h1 {
+  font-size: 1.9rem;
+  font-weight: 800;
+  margin: 6px 0 16px;
+  word-break: keep-all;
+}
+
+.detail-desc {
+  color: var(--color-text-muted);
+  margin-bottom: 24px;
+  word-break: keep-all;
+}
+
+.detail-info .product-specs {
+  margin-bottom: 18px;
+}
+
+.detail-info .product-tags {
+  margin-bottom: 20px;
+}
+
+.detail-price {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--color-navy);
+  margin-bottom: 24px;
+}
+
+.detail-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.detail-actions .btn-add-cart {
+  flex: none;
+  padding: 15px 32px;
+  font-size: 0.95rem;
+}
+
+.detail-actions .btn-outline-navy {
+  display: inline-flex;
+  align-items: center;
+  padding: 15px 28px;
+}
+
+/* Role section (why-this-product) */
+.role-section {
+  background: var(--color-bg-alt);
+}
+
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.role-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: transform 0.25s var(--ease-out-expo), box-shadow 0.25s var(--ease-out-expo);
+}
+
+.role-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 36px -18px rgba(22, 38, 79, 0.18);
+}
+
+.role-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--color-bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+}
+
+.role-card h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin: 6px 0 10px;
+  word-break: keep-all;
+}
+
+.role-card p {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  word-break: keep-all;
+}
+
+.role-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.role-tags span {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--color-bg-alt);
+  color: var(--color-navy);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.role-card .role-tags span {
+  background: var(--color-bg-alt);
+}
+
 /* Company overview */
 .overview-grid {
   display: grid;
@@ -2013,8 +2193,13 @@ a {
   .overview-grid,
   .ceo-grid,
   .contact-layout,
-  .cart-layout {
+  .cart-layout,
+  .detail-layout {
     grid-template-columns: 1fr;
+  }
+
+  .role-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .footer-grid {
@@ -2111,7 +2296,8 @@ a {
   .credit-grid,
   .goals-grid,
   .partners-grid,
-  .policy-grid {
+  .policy-grid,
+  .role-grid {
     grid-template-columns: 1fr;
   }
 
