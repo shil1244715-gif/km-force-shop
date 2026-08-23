@@ -1083,6 +1083,22 @@ a {
   stroke-width: 1.1;
 }
 
+.product-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detail-photo #detailPhotoWrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
 .detail-photo .product-badge {
   top: 16px;
   left: 16px;

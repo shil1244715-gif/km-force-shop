@@ -1,4 +1,11 @@
 // Populates product-detail.html from the ?id= query param using PRODUCTS (products-data.js)
+function photoHtml(p) {
+  if (p.photo) {
+    return `<img src="${p.photo}" alt="${p.name}" class="product-photo-img" loading="lazy">`;
+  }
+  return `<div class="product-photo-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">${CAT_ICONS[p.cat]}</svg></div>`;
+}
+
 (function () {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
@@ -24,7 +31,9 @@
   document.getElementById('detailCode').textContent = product.id;
   document.getElementById('detailSpec').textContent = product.spec;
   document.getElementById('detailOrigin').textContent = product.origin;
-  document.getElementById('detailIcon').innerHTML = CAT_ICONS[product.cat];
+
+  const photoWrap = document.getElementById('detailPhotoWrap');
+  photoWrap.innerHTML = photoHtml(product);
 
   const badge = document.getElementById('detailBadge');
   if (product.badge) {
