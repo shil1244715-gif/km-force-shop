@@ -2,15 +2,20 @@
   --color-bg: #faf7f2;
   --color-bg-alt: #f1eae0;
   --color-surface: #fffdfa;
-  --color-text: #221e1a;
-  --color-text-muted: #6f6459;
-  --color-primary: #b5502a;
-  --color-primary-dark: #963f20;
-  --color-primary-tint: rgba(181, 80, 42, 0.1);
-  --color-border: #e7ddce;
+  --color-text: #1a1613;
+  --color-text-muted: #6b6156;
+  --color-primary: #9c7a3c;
+  --color-primary-dark: #7e6130;
+  --color-primary-tint: rgba(156, 122, 60, 0.12);
+  --color-border: #e2d9c8;
+  --color-ink: #15120f;
+  --color-ink-alt: #211c17;
+  --color-ivory: #f6f1e8;
+  --color-ivory-muted: rgba(246, 241, 232, 0.68);
   --max-width: 1080px;
-  --radius: 18px;
-  --radius-sm: 12px;
+  --radius: 4px;
+  --radius-lg: 18px;
+  --radius-sm: 4px;
   --font-body: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
     "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
   --font-display: "Noto Serif KR", var(--font-body);
@@ -92,13 +97,15 @@ a {
 
 .nav {
   display: flex;
-  gap: 36px;
+  gap: 34px;
 }
 
 .nav a {
   position: relative;
-  font-size: 0.94rem;
-  font-weight: 500;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
   color: var(--color-text-muted);
   padding-bottom: 4px;
   transition: color 0.2s var(--ease-out-expo);
@@ -142,28 +149,43 @@ a {
 
 /* Hero */
 .hero {
-  padding: 132px 0 112px;
+  padding: 148px 0 130px;
   text-align: center;
-  background: radial-gradient(circle at 50% 0%, #f7e9dc 0%, var(--color-bg) 62%);
+  background: radial-gradient(circle at 50% -10%, #2a2118 0%, var(--color-ink) 55%);
+  color: var(--color-ivory);
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 2px;
+  background: var(--color-primary);
 }
 
 .hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 6vw, 4.1rem);
+  font-size: clamp(2.4rem, 9vw, 4.8rem);
   font-weight: 700;
   line-height: 1.22;
   letter-spacing: -0.01em;
-  margin-bottom: 26px;
+  word-break: keep-all;
+  color: var(--color-ivory);
+  margin-bottom: 28px;
   opacity: 0;
   animation: rise-in 0.8s var(--ease-out-expo) 0.05s forwards;
 }
 
 .hero-desc {
-  color: var(--color-text-muted);
-  font-size: 1.08rem;
+  color: var(--color-ivory-muted);
+  font-size: 1.1rem;
   max-width: 620px;
   text-wrap: pretty;
-  margin: 0 auto 40px;
+  margin: 0 auto 44px;
   opacity: 0;
   animation: rise-in 0.8s var(--ease-out-expo) 0.18s forwards;
 }
@@ -199,30 +221,32 @@ a {
 
 .btn {
   display: inline-block;
-  padding: 15px 32px;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: 0.95rem;
+  padding: 15px 34px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   transition: transform 0.2s var(--ease-out-expo), box-shadow 0.2s var(--ease-out-expo),
-    background 0.2s var(--ease-out-expo);
+    background 0.2s var(--ease-out-expo), border-color 0.2s var(--ease-out-expo);
 }
 
 .btn-primary {
   background: var(--color-primary);
-  color: #fff;
-  box-shadow: 0 10px 24px -6px rgba(181, 80, 42, 0.4);
+  color: var(--color-ink);
+  box-shadow: 0 10px 24px -8px rgba(156, 122, 60, 0.55);
 }
 
 .btn-primary:hover {
-  background: var(--color-primary-dark);
+  background: #b18d4c;
   transform: translateY(-2px);
-  box-shadow: 0 14px 28px -6px rgba(181, 80, 42, 0.45);
+  box-shadow: 0 14px 28px -8px rgba(156, 122, 60, 0.6);
 }
 
 .btn-outline {
   background: transparent;
-  color: var(--color-text);
-  border: 1.5px solid var(--color-border);
+  color: var(--color-ivory);
+  border: 1.5px solid rgba(246, 241, 232, 0.35);
 }
 
 .btn-outline:hover {
@@ -242,10 +266,11 @@ a {
 
 .section-title {
   font-family: var(--font-display);
-  font-size: clamp(1.7rem, 3.6vw, 2.4rem);
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
   font-weight: 700;
   margin-bottom: 22px;
   letter-spacing: -0.01em;
+  word-break: keep-all;
 }
 
 .section-desc {
@@ -281,7 +306,7 @@ a {
 .about-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   padding: 36px 28px;
   transition: transform 0.25s var(--ease-out-expo), box-shadow 0.25s var(--ease-out-expo);
 }
@@ -355,7 +380,7 @@ a {
 .product-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   transition: transform 0.25s var(--ease-out-expo), box-shadow 0.25s var(--ease-out-expo);
   padding-bottom: 26px;
