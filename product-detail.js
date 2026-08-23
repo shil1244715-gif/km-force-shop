@@ -24,7 +24,6 @@
   document.getElementById('detailCode').textContent = product.id;
   document.getElementById('detailSpec').textContent = product.spec;
   document.getElementById('detailOrigin').textContent = product.origin;
-  document.getElementById('detailPrice').textContent = formatWonPlain(product.price);
   document.getElementById('detailIcon').innerHTML = CAT_ICONS[product.cat];
 
   const badge = document.getElementById('detailBadge');
@@ -37,12 +36,6 @@
 
   const tags = document.getElementById('detailTags');
   tags.innerHTML = '<span class="tag tag-stock">재고보유</span>' + (product.hit ? '<span class="tag tag-hit">HIT</span>' : '');
-
-  const addCart = document.getElementById('detailAddCart');
-  addCart.dataset.id = product.id;
-  addCart.dataset.name = product.name;
-  addCart.dataset.price = product.price;
-  bindAddToCartButtons(document.getElementById('detailLayout'));
 
   document.getElementById('roleQualityText').textContent =
     `${product.spec}을 획득한 제품으로, 산업 현장에서 요구하는 안전 기준을 충족합니다.`;
@@ -69,13 +62,11 @@
           <span class="tag tag-stock">재고보유</span>
           ${p.hit ? '<span class="tag tag-hit">HIT</span>' : ''}
         </div>
-        <div class="product-price">${formatWonPlain(p.price)}</div>
-        <div class="product-actions">
-          <button class="btn-add-cart" type="button" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}">장바구니 담기</button>
+        <div class="product-card-actions">
+          <a href="product-detail.html?id=${p.id}" class="btn-detail">상세보기</a>
+          <a href="index.html#contact" class="btn-quote">견적문의</a>
         </div>
-        <a href="product-detail.html?id=${p.id}" class="quote-link">상세 보기</a>
       </div>
     </div>
   `).join('');
-  bindAddToCartButtons(relatedGrid);
 })();
