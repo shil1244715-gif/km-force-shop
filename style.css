@@ -446,6 +446,17 @@ a {
   font-size: 0.85rem;
 }
 
+.footer-blog-link {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.footer-blog-link:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
 /* Responsive */
 @media (max-width: 860px) {
   .about-grid,
