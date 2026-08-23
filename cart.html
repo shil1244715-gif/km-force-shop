@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>장바구니 | KM FORCE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="index.html#home" class="logo">
+      <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <rect x="0" y="0" width="40" height="40" rx="9" fill="#16264f"/>
+        <rect x="9" y="9" width="15" height="15" rx="1.5" transform="rotate(45 16.5 16.5)" fill="#f5f6fa" stroke="#e8622c" stroke-width="2.4"/>
+        <rect x="16" y="16" width="15" height="15" rx="1.5" transform="rotate(45 23.5 23.5)" fill="#f5f6fa" stroke="#4a72d9" stroke-width="2.4"/>
+      </svg>
+      <span class="logo-text">KM FORCE</span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="index.html#about">회사소개</a>
+      <a href="index.html#products">제품</a>
+      <a href="index.html#business">사업영역</a>
+      <a href="index.html#values">핵심가치</a>
+      <a href="index.html#partners">거래처</a>
+      <a href="index.html#contact">문의</a>
+    </nav>
+    <form class="header-search" action="search.html" method="get">
+      <input type="text" name="q" placeholder="상품명을 검색해보세요" aria-label="상품 검색">
+      <button type="submit" aria-label="검색">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+    </form>
+    <a href="tel:032-710-1393" class="header-tel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+      <span>032-710-1393</span>
+    </a>
+    <a href="cart.html" class="header-cart" aria-label="장바구니">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.4"/><circle cx="18" cy="21" r="1.4"/><path d="M2.5 3h2l2.6 12.4a2 2 0 0 0 2 1.6h7.4a2 2 0 0 0 2-1.6L21 7H6"/></svg>
+      <span class="header-cart-count" id="cartCount" hidden>0</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="section product-hero">
+    <div class="container">
+      <p class="kicker">SHOPPING CART</p>
+      <h1 class="section-title">장바구니</h1>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div id="cartLayout" class="cart-layout" hidden>
+        <div class="cart-list" id="cartList"></div>
+
+        <div class="cart-summary">
+          <h3>주문 요약</h3>
+          <div class="cart-summary-row">
+            <span>상품 수량</span>
+            <span id="summaryCount">0개</span>
+          </div>
+          <div class="cart-summary-total">
+            <span>총 합계</span>
+            <span id="summaryTotal">0원</span>
+          </div>
+          <a href="checkout.html" class="btn btn-primary">주문하기</a>
+        </div>
+      </div>
+
+      <div id="cartEmpty" class="cart-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.4"/><circle cx="18" cy="21" r="1.4"/><path d="M2.5 3h2l2.6 12.4a2 2 0 0 0 2 1.6h7.4a2 2 0 0 0 2-1.6L21 7H6"/></svg>
+        <p>장바구니가 비어 있어요.</p>
+        <a href="index.html#products" class="btn btn-primary">제품 둘러보기</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="footer-utility">
+  <div class="container footer-utility-inner">
+    <a href="index.html#about">회사소개</a>
+    <a href="#">이용약관</a>
+    <a href="#">개인정보처리방침</a>
+    <a href="index.html#shipping">쇼핑몰 이용안내</a>
+    <a href="index.html#contact">고객센터</a>
+    <a href="#">사업자정보확인</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col footer-col-brand">
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <rect x="0" y="0" width="40" height="40" rx="9" fill="#16264f"/>
+          <rect x="9" y="9" width="15" height="15" rx="1.5" transform="rotate(45 16.5 16.5)" fill="#f5f6fa" stroke="#e8622c" stroke-width="2.4"/>
+          <rect x="16" y="16" width="15" height="15" rx="1.5" transform="rotate(45 23.5 23.5)" fill="#f5f6fa" stroke="#4a72d9" stroke-width="2.4"/>
+        </svg>
+        <span class="logo-text">KM FORCE</span>
+      </div>
+      <p class="footer-copyright">KM Industry Co., Ltd.<br>&copy; 2026 (주)케이엠산업. All rights reserved.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>고객센터</h4>
+      <p class="footer-phone">032-710-1393</p>
+      <ul>
+        <li>상담가능시간: 평일 09:00~18:00</li>
+        <li>(주말·공휴일 휴무, 점심 12:00~13:00)</li>
+        <li>Fax : 032-565-1390</li>
+        <li>Mail : kmbiz2100@naver.com</li>
+        <li>Blog : <a href="https://blog.naver.com/kmbiz2100" target="_blank" rel="noopener">blog.naver.com/kmbiz2100</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>사업자 등록 정보</h4>
+      <ul>
+        <li><strong>(주)케이엠산업</strong> (대표자: 이강민)</li>
+        <li>인천광역시 동구 방축로83번길 23, 인천산업용품유통단지 2단지 11동 310호</li>
+        <li>사업자등록번호 : 163-81-02313</li>
+        <li>법인등록번호 : 120111-1178591</li>
+        <li>통신판매신고번호 : 등록 예정</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>무통장 입금 안내</h4>
+      <ul>
+        <li>입금 계좌 정보는 등록 준비 중입니다.</li>
+        <li>주문 완료 후 담당자가 입금 계좌를 별도로 안내드립니다.</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<button class="chat-toggle" id="chatToggle" aria-label="문의 채팅 열기">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8A2.5 2.5 0 0 1 17.5 16H9l-5 4.5V5.5Z"/></svg>
+</button>
+
+<div class="chat-widget" id="chatWidget" hidden>
+  <div class="chat-widget-header">
+    <div class="chat-widget-brand">
+      <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <rect x="0" y="0" width="40" height="40" rx="9" fill="#16264f"/>
+        <rect x="9" y="9" width="15" height="15" rx="1.5" transform="rotate(45 16.5 16.5)" fill="#f5f6fa" stroke="#e8622c" stroke-width="2.4"/>
+        <rect x="16" y="16" width="15" height="15" rx="1.5" transform="rotate(45 23.5 23.5)" fill="#f5f6fa" stroke="#4a72d9" stroke-width="2.4"/>
+      </svg>
+      <div>
+        <strong>KM FORCE</strong>
+        <span>평일 09:00~18:00 운영</span>
+      </div>
+    </div>
+    <button class="chat-widget-close" id="chatClose" aria-label="닫기">✕</button>
+  </div>
+  <div class="chat-widget-body">
+    <div class="chat-bubble">
+      안녕하세요. 안전을 지키는 든든한 파트너, KM FORCE입니다.<br>무엇을 도와드릴까요?
+    </div>
+  </div>
+  <div class="chat-widget-footer">
+    <a href="index.html#contact" class="btn btn-primary">문의하기</a>
+    <a href="tel:032-710-1393" class="chat-widget-tel">☎ 상담전화 032-710-1393</a>
+  </div>
+</div>
+
+<script src="cart.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

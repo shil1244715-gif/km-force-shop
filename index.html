@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>혼잡스 | HONJAPSU</title>
-<meta name="description" content="혼자여도 잡다하게, 혼잡스 - 취향을 채우는 라이프스타일 셀렉트샵">
+<title>(주)케이엠산업 | KM FORCE</title>
+<meta name="description" content="안전을 지키는 든든한 파트너, (주)케이엠산업 KM FORCE - 산업안전용품, 건설안전장비, 부직포제품 전문기업">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -15,16 +15,36 @@
 
 <header class="header" id="header">
   <div class="container header-inner">
-    <a href="#home" class="logo">혼잡스<span>.</span></a>
+    <a href="#home" class="logo">
+      <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <rect x="0" y="0" width="40" height="40" rx="9" fill="#16264f"/>
+        <rect x="9" y="9" width="15" height="15" rx="1.5" transform="rotate(45 16.5 16.5)" fill="#f5f6fa" stroke="#e8622c" stroke-width="2.4"/>
+        <rect x="16" y="16" width="15" height="15" rx="1.5" transform="rotate(45 23.5 23.5)" fill="#f5f6fa" stroke="#4a72d9" stroke-width="2.4"/>
+      </svg>
+      <span class="logo-text">KM FORCE</span>
+    </a>
     <nav class="nav" id="nav">
-      <a href="#home">홈</a>
-      <a href="#about">소개</a>
-      <a href="#features">특징</a>
+      <a href="#about">회사소개</a>
       <a href="#products">제품</a>
-      <a href="#guestbook">방명록</a>
+      <a href="#business">사업영역</a>
+      <a href="#values">핵심가치</a>
+      <a href="#partners">거래처</a>
       <a href="#contact">문의</a>
-      <a href="https://blog.naver.com/kmbiz2100" target="_blank" rel="noopener">블로그</a>
     </nav>
+    <form class="header-search" action="search.html" method="get">
+      <input type="text" name="q" placeholder="상품명을 검색해보세요" aria-label="상품 검색">
+      <button type="submit" aria-label="검색">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+    </form>
+    <a href="tel:032-710-1393" class="header-tel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+      <span>032-710-1393</span>
+    </a>
+    <a href="cart.html" class="header-cart" aria-label="장바구니">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.4"/><circle cx="18" cy="21" r="1.4"/><path d="M2.5 3h2l2.6 12.4a2 2 0 0 0 2 1.6h7.4a2 2 0 0 0 2-1.6L21 7H6"/></svg>
+      <span class="header-cart-count" id="cartCount" hidden>0</span>
+    </a>
     <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">
       <span></span><span></span><span></span>
     </button>
@@ -32,165 +52,811 @@
 </header>
 
 <main>
+  <!-- Hero -->
   <section class="hero" id="home">
+    <div class="hero-bg" aria-hidden="true"></div>
     <div class="container hero-inner">
-      <h1>혼자여도, 잡다해도 <br> 즐거운 하루</h1>
-      <p class="hero-desc">
-        혼잡스는 소소하지만 확실한 취향을 담은 라이프스타일 셀렉트샵입니다.<br>
-        일상을 채우는 작은 물건들로 당신의 하루를 더 즐겁게 만들어 드려요.
-      </p>
-      <div class="hero-buttons">
-        <a href="#products" class="btn btn-primary">제품 둘러보기</a>
-        <a href="#contact" class="btn btn-outline">문의하기</a>
+      <div class="hero-carousel" id="heroCarousel">
+        <div class="hero-slide is-active">
+          <span class="badge">SINCE 2021</span>
+          <h1>(주)케이엠산업<br><span class="hero-en">KM Industry Co., Ltd.</span></h1>
+          <div class="hero-rule"></div>
+          <p class="hero-tagline">안전을 지키는 든든한 파트너</p>
+          <p class="hero-en-sub">Your Reliable Partner in Safety</p>
+          <div class="hero-buttons">
+            <a href="#business" class="btn btn-primary">사업영역 보기</a>
+            <a href="#contact" class="btn btn-outline">문의하기</a>
+          </div>
+        </div>
+
+        <div class="hero-slide">
+          <span class="badge">PRODUCTS</span>
+          <h1>건설·개인·소방<br><span class="hero-en">All-in-One Safety Supplies</span></h1>
+          <div class="hero-rule"></div>
+          <p class="hero-tagline">필요한 안전용품을 한 곳에서</p>
+          <p class="hero-en-sub">Construction · Personal · Fire Safety Equipment</p>
+          <div class="hero-buttons">
+            <a href="#products" class="btn btn-primary">제품 둘러보기</a>
+            <a href="cart.html" class="btn btn-outline">장바구니 보기</a>
+          </div>
+        </div>
+
+        <div class="hero-slide">
+          <span class="badge">TRUSTED PARTNER</span>
+          <h1>다양한 산업 현장의 신뢰<br><span class="hero-en">Trusted by Industry Leaders</span></h1>
+          <div class="hero-rule"></div>
+          <p class="hero-tagline">믿을 수 있는 안전 파트너, KM FORCE</p>
+          <p class="hero-en-sub">Reliable Partnerships Across Industries</p>
+          <div class="hero-buttons">
+            <a href="#partners" class="btn btn-primary">주요거래처 보기</a>
+            <a href="#about" class="btn btn-outline">회사소개 보기</a>
+          </div>
+        </div>
+
+        <button class="hero-arrow hero-arrow-prev" aria-label="이전 슬라이드">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="hero-arrow hero-arrow-next" aria-label="다음 슬라이드">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+
+        <div class="hero-dots">
+          <button class="hero-dot is-active" aria-label="1번 슬라이드"></button>
+          <button class="hero-dot" aria-label="2번 슬라이드"></button>
+          <button class="hero-dot" aria-label="3번 슬라이드"></button>
+        </div>
+        <div class="hero-progress"><div class="hero-progress-bar"></div></div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="about">
-    <div class="container">
-      <h2 class="section-title">혼잡스를 소개합니다</h2>
-      <p class="section-desc">
-        "혼자여도 잡다하게" 라는 이름처럼, 혼잡스는 혼자만의 시간도 풍성하게 채워주는
-        다양하고 소소한 라이프스타일 아이템을 소개하고 판매하는 공간입니다.
-        크지 않아도, 화려하지 않아도 매일을 조금 더 특별하게 만들어주는 물건들을 큐레이션합니다.
-      </p>
-
-      <div class="about-grid">
-        <div class="about-card">
-          <div class="about-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9 8 3h8l4 6-9.5 12L4 9Z"/><path d="M4 9h16M8 3l1.5 6L12 21l2.5-12L16 3"/></svg>
-          </div>
-          <h3>취향 큐레이션</h3>
-          <p>실용성과 감성을 모두 담은 아이템만 엄선하여 소개합니다.</p>
-        </div>
-        <div class="about-card">
-          <div class="about-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.7 4.2 3.1 6.6 7.3 7.3-4.2.7-6.6 3.1-7.3 7.3-.7-4.2-3.1-6.6-7.3-7.3C8.9 9.6 11.3 7.2 12 3Z"/></svg>
-          </div>
-          <h3>소소한 즐거움</h3>
-          <p>거창하지 않아도 일상에 작은 행복을 더하는 물건들을 찾습니다.</p>
-        </div>
-        <div class="about-card">
-          <div class="about-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12.5a1.5 1.5 0 0 1-1.5 1.5H8.5A1.5 1.5 0 0 1 7 20.5L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
-          </div>
-          <h3>편안한 쇼핑</h3>
-          <p>부담 없이 둘러보고, 필요한 만큼만 편하게 만나보세요.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt" id="features">
-    <div class="container">
-      <h2 class="section-title">혼잡스만의 특징</h2>
-
-      <div class="features-grid">
-        <div class="feature-item">
-          <div class="feature-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>
-          </div>
-          <h3>다양한 카테고리</h3>
-          <p>생활용품부터 소품까지, 잡다하지만 꼭 필요한 아이템을 한곳에서 만나보세요.</p>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M11.5 3H5a2 2 0 0 0-2 2v6.5a2 2 0 0 0 .59 1.41l8.5 8.5a2 2 0 0 0 2.82 0l6.09-6.09a2 2 0 0 0 0-2.82l-8.5-8.5A2 2 0 0 0 11.5 3Z"/><circle cx="8" cy="8" r="1.3"/></svg>
-          </div>
-          <h3>합리적인 가격</h3>
-          <p>부담 없는 가격으로 즐거운 소비를 할 수 있도록 준비했습니다.</p>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h11v9H2z"/><path d="M13 10h4l4 3.5V16h-8z"/><circle cx="6.5" cy="18" r="1.6"/><circle cx="16.5" cy="18" r="1.6"/></svg>
-          </div>
-          <h3>빠른 배송</h3>
-          <p>주문 후 신속하게 준비하여 빠르게 받아보실 수 있습니다.</p>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8A2.5 2.5 0 0 1 17.5 16H9l-5 4.5V5.5Z"/></svg>
-          </div>
-          <h3>친절한 응대</h3>
-          <p>궁금한 점은 언제든 편하게 문의해 주세요. 빠르게 답변드립니다.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <!-- Product Categories -->
   <section class="section" id="products">
     <div class="container">
-      <h2 class="section-title">이런 제품들을 만나보세요</h2>
+      <p class="kicker">PRODUCT CATEGORIES</p>
+      <h2 class="section-title">제품 카테고리</h2>
 
-      <div class="products-grid">
-        <div class="product-card">
-          <div class="product-thumb">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21h6M8 21V10a4 4 0 0 1 8 0v11"/><path d="M12 6c-1-1.2-1-2.3 0-4 1 1.7 1 2.8 0 4Z"/></svg>
+      <div class="product-cat-grid">
+        <a href="products-construction.html" class="product-cat-card">
+          <div class="product-cat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15a8 8 0 0 1 16 0v1H4v-1Z"/><path d="M2 16h20"/><path d="M12 7V4"/></svg>
           </div>
-          <h3>홈 데코 소품</h3>
-          <p>공간을 채우는 아기자기한 인테리어 아이템</p>
+          <h3>건설안전용품</h3>
+          <p>안전모·안전대·추락방지망 등 건설 현장 필수 안전용품</p>
+          <span class="product-cat-link">제품 보기 →</span>
+        </a>
+        <a href="products-personal.html" class="product-cat-card">
+          <div class="product-cat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10c0-2 2-3 8-3s8 1 8 3v3c0 3-3 6-8 6s-8-3-8-6v-3Z"/><path d="M8 13h.01M16 13h.01"/></svg>
+          </div>
+          <h3>개인안전용품</h3>
+          <p>마스크·보안경·작업장갑 등 개인보호장비(PPE)</p>
+          <span class="product-cat-link">제품 보기 →</span>
+        </a>
+        <a href="products-fire.html" class="product-cat-card">
+          <div class="product-cat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h6l1 3H8l1-3Z"/><path d="M11 3v3M13 3v3"/><path d="M8 9h8v10a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V9Z"/><path d="M16 11l4-2"/></svg>
+          </div>
+          <h3>소방안전용품</h3>
+          <p>소화기·유도등·방화복 등 소방 안전 필수 장비</p>
+          <span class="product-cat-link">제품 보기 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Best Products -->
+  <section class="section best-section">
+    <div class="container">
+      <p class="kicker">BEST PRODUCTS</p>
+      <h2 class="section-title">인기 상품</h2>
+      <p class="section-desc">현장에서 가장 많이 찾는 안전용품을 모았습니다.</p>
+
+      <div class="best-tabs">
+        <button class="best-tab is-active" data-cat="all">전체</button>
+        <button class="best-tab" data-cat="construction">건설안전용품</button>
+        <button class="best-tab" data-cat="personal">개인안전용품</button>
+        <button class="best-tab" data-cat="fire">소방안전용품</button>
+      </div>
+
+      <div class="product-grid best-product-grid" id="bestProductGrid">
+        <div class="product-item" data-cat="construction">
+          <div class="product-photo">
+            <span class="product-badge">BEST 1</span>
+            <button class="product-wish" aria-label="찜하기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.35-9.5-8.5C.8 8 2.5 4.5 6 4.5c2 0 3.5 1 6 3.5 2.5-2.5 4-3.5 6-3.5 3.5 0 5.2 3.5 3.5 7C19 15.65 12 20 12 20Z"/></svg></button>
+            <div class="product-photo-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15a8 8 0 0 1 16 0v1H4v-1Z"/><path d="M2 16h20"/><path d="M12 7V4"/></svg></div>
+          </div>
+          <div class="product-body">
+            <h3 class="product-name">ABS 산업용 안전모 (백색)</h3>
+            <div class="product-specs">
+              <div class="spec-row"><span>코드</span><span>KM-HM-001</span></div>
+              <div class="spec-row"><span>규격</span><span>KC 인증</span></div>
+              <div class="spec-row"><span>원산지</span><span>국내</span></div>
+            </div>
+            <div class="product-tags">
+              <span class="tag tag-stock">재고보유</span>
+              <span class="tag tag-hit">HIT</span>
+            </div>
+            <div class="product-price">12,000원</div>
+            <div class="product-actions">
+              <button class="btn-add-cart" type="button" data-id="KM-HM-001" data-name="ABS 산업용 안전모 (백색)" data-price="12000">장바구니 담기</button>
+            </div>
+            <a href="products-construction.html" class="quote-link">전체 보기</a>
+          </div>
         </div>
-        <div class="product-card">
-          <div class="product-thumb">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h4v3.2c1.5.8 2.5 2.3 2.5 4.1V20a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2V9.3c0-1.8 1-3.3 2.5-4.1V2Z"/><path d="M9 13h6"/></svg>
+
+        <div class="product-item" data-cat="construction">
+          <div class="product-photo">
+            <span class="product-badge product-badge-sale">특가</span>
+            <button class="product-wish" aria-label="찜하기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.35-9.5-8.5C.8 8 2.5 4.5 6 4.5c2 0 3.5 1 6 3.5 2.5-2.5 4-3.5 6-3.5 3.5 0 5.2 3.5 3.5 7C19 15.65 12 20 12 20Z"/></svg></button>
+            <div class="product-photo-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15a8 8 0 0 1 16 0v1H4v-1Z"/><path d="M2 16h20"/><path d="M12 7V4"/></svg></div>
           </div>
-          <h3>데일리 생활용품</h3>
-          <p>매일 사용해도 질리지 않는 실용적인 제품</p>
+          <div class="product-body">
+            <h3 class="product-name">안전벨트 고리 (카라비너)</h3>
+            <div class="product-specs">
+              <div class="spec-row"><span>코드</span><span>KM-CB-003</span></div>
+              <div class="spec-row"><span>규격</span><span>KS 표준</span></div>
+              <div class="spec-row"><span>원산지</span><span>국내</span></div>
+            </div>
+            <div class="product-tags">
+              <span class="tag tag-stock">재고보유</span>
+            </div>
+            <div class="product-price">18,000원</div>
+            <div class="product-actions">
+              <button class="btn-add-cart" type="button" data-id="KM-CB-003" data-name="안전벨트 고리 (카라비너)" data-price="18000">장바구니 담기</button>
+            </div>
+            <a href="products-construction.html" class="quote-link">전체 보기</a>
+          </div>
         </div>
-        <div class="product-card">
-          <div class="product-thumb">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.5" y="14" width="4" height="6" rx="1.5"/><rect x="17.5" y="14" width="4" height="6" rx="1.5"/></svg>
+
+        <div class="product-item" data-cat="personal">
+          <div class="product-photo">
+            <span class="product-badge">BEST 1</span>
+            <button class="product-wish" aria-label="찜하기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.35-9.5-8.5C.8 8 2.5 4.5 6 4.5c2 0 3.5 1 6 3.5 2.5-2.5 4-3.5 6-3.5 3.5 0 5.2 3.5 3.5 7C19 15.65 12 20 12 20Z"/></svg></button>
+            <div class="product-photo-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10c0-2 2-3 8-3s8 1 8 3v3c0 3-3 6-8 6s-8-3-8-6v-3Z"/><path d="M8 13h.01M16 13h.01"/></svg></div>
           </div>
-          <h3>취미 · 여가 아이템</h3>
-          <p>나만의 시간을 더 즐겁게 만들어주는 소품</p>
+          <div class="product-body">
+            <h3 class="product-name">방진마스크 2급 (10매입)</h3>
+            <div class="product-specs">
+              <div class="spec-row"><span>코드</span><span>KM-MK-022</span></div>
+              <div class="spec-row"><span>규격</span><span>KF80</span></div>
+              <div class="spec-row"><span>원산지</span><span>국내</span></div>
+            </div>
+            <div class="product-tags">
+              <span class="tag tag-stock">재고보유</span>
+              <span class="tag tag-hit">HIT</span>
+            </div>
+            <div class="product-price">9,900원</div>
+            <div class="product-actions">
+              <button class="btn-add-cart" type="button" data-id="KM-MK-022" data-name="방진마스크 2급 (10매입)" data-price="9900">장바구니 담기</button>
+            </div>
+            <a href="products-personal.html" class="quote-link">전체 보기</a>
+          </div>
+        </div>
+
+        <div class="product-item" data-cat="personal">
+          <div class="product-photo">
+            <span class="product-badge product-badge-sale">특가</span>
+            <button class="product-wish" aria-label="찜하기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.35-9.5-8.5C.8 8 2.5 4.5 6 4.5c2 0 3.5 1 6 3.5 2.5-2.5 4-3.5 6-3.5 3.5 0 5.2 3.5 3.5 7C19 15.65 12 20 12 20Z"/></svg></button>
+            <div class="product-photo-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10c0-2 2-3 8-3s8 1 8 3v3c0 3-3 6-8 6s-8-3-8-6v-3Z"/><path d="M8 13h.01M16 13h.01"/></svg></div>
+          </div>
+          <div class="product-body">
+            <h3 class="product-name">산업용 보안경 (김서림방지)</h3>
+            <div class="product-specs">
+              <div class="spec-row"><span>코드</span><span>KM-GG-007</span></div>
+              <div class="spec-row"><span>규격</span><span>KC 인증</span></div>
+              <div class="spec-row"><span>원산지</span><span>국내</span></div>
+            </div>
+            <div class="product-tags">
+              <span class="tag tag-stock">재고보유</span>
+            </div>
+            <div class="product-price">7,500원</div>
+            <div class="product-actions">
+              <button class="btn-add-cart" type="button" data-id="KM-GG-007" data-name="산업용 보안경 (김서림방지)" data-price="7500">장바구니 담기</button>
+            </div>
+            <a href="products-personal.html" class="quote-link">전체 보기</a>
+          </div>
+        </div>
+
+        <div class="product-item" data-cat="fire">
+          <div class="product-photo">
+            <span class="product-badge">BEST 1</span>
+            <button class="product-wish" aria-label="찜하기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.35-9.5-8.5C.8 8 2.5 4.5 6 4.5c2 0 3.5 1 6 3.5 2.5-2.5 4-3.5 6-3.5 3.5 0 5.2 3.5 3.5 7C19 15.65 12 20 12 20Z"/></svg></button>
+            <div class="product-photo-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h6l1 3H8l1-3Z"/><path d="M11 3v3M13 3v3"/><path d="M8 9h8v10a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V9Z"/><path d="M16 11l4-2"/></svg></div>
+          </div>
+          <div class="product-body">
+            <h3 class="product-name">분말 소화기 (3.3kg)</h3>
+            <div class="product-specs">
+              <div class="spec-row"><span>코드</span><span>KM-FE-001</span></div>
+              <div class="spec-row"><span>규격</span><span>KFI 인증</span></div>
+              <div class="spec-row"><span>원산지</span><span>국내</span></div>
+            </div>
+            <div class="product-tags">
+              <span class="tag tag-stock">재고보유</span>
+              <span class="tag tag-hit">HIT</span>
+            </div>
+            <div class="product-price">25,000원</div>
+            <div class="product-actions">
+              <button class="btn-add-cart" type="button" data-id="KM-FE-001" data-name="분말 소화기 (3.3kg)" data-price="25000">장바구니 담기</button>
+            </div>
+            <a href="products-fire.html" class="quote-link">전체 보기</a>
+          </div>
+        </div>
+
+        <div class="product-item" data-cat="fire">
+          <div class="product-photo">
+            <span class="product-badge product-badge-sale">특가</span>
+            <button class="product-wish" aria-label="찜하기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.35-9.5-8.5C.8 8 2.5 4.5 6 4.5c2 0 3.5 1 6 3.5 2.5-2.5 4-3.5 6-3.5 3.5 0 5.2 3.5 3.5 7C19 15.65 12 20 12 20Z"/></svg></button>
+            <div class="product-photo-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h6l1 3H8l1-3Z"/><path d="M11 3v3M13 3v3"/><path d="M8 9h8v10a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V9Z"/><path d="M16 11l4-2"/></svg></div>
+          </div>
+          <div class="product-body">
+            <h3 class="product-name">화재감지기 (연기식)</h3>
+            <div class="product-specs">
+              <div class="spec-row"><span>코드</span><span>KM-FD-002</span></div>
+              <div class="spec-row"><span>규격</span><span>KFI 인증</span></div>
+              <div class="spec-row"><span>원산지</span><span>국내</span></div>
+            </div>
+            <div class="product-tags">
+              <span class="tag tag-stock">재고보유</span>
+            </div>
+            <div class="product-price">32,000원</div>
+            <div class="product-actions">
+              <button class="btn-add-cart" type="button" data-id="KM-FD-002" data-name="화재감지기 (연기식)" data-price="32000">장바구니 담기</button>
+            </div>
+            <a href="products-fire.html" class="quote-link">전체 보기</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="guestbook">
+  <!-- Company Overview -->
+  <section class="section" id="about">
     <div class="container">
-      <h2 class="section-title">방명록</h2>
-      <p class="section-desc">혼잡스에 다녀가신 흔적을 남겨주세요.</p>
+      <p class="kicker">COMPANY OVERVIEW</p>
+      <h2 class="section-title">회사 개요</h2>
 
-      <form class="guestbook-form" id="guestbookForm">
-        <input type="text" name="message" placeholder="한마디 남겨주세요" maxlength="300" required>
-        <button type="submit" class="btn btn-primary">남기기</button>
-      </form>
-      <p class="form-status" id="guestbookStatus"></p>
+      <div class="overview-grid">
+        <div class="overview-table">
+          <div class="overview-row">
+            <span class="overview-label">회사명</span>
+            <span class="overview-value">(주)케이엠산업 / KM Industry Co., Ltd.</span>
+          </div>
+          <div class="overview-row">
+            <span class="overview-label">대표이사</span>
+            <span class="overview-value">이강민 (Lee Kang Min)</span>
+          </div>
+          <div class="overview-row">
+            <span class="overview-label">설립연월</span>
+            <span class="overview-value">2021년 9월</span>
+          </div>
+          <div class="overview-row">
+            <span class="overview-label">주요사업</span>
+            <span class="overview-value">산업안전용품, 건설자재 도소매 및 제조</span>
+          </div>
+          <div class="overview-row">
+            <span class="overview-label">사업자등록번호</span>
+            <span class="overview-value">163-81-02313</span>
+          </div>
+          <div class="overview-row">
+            <span class="overview-label">법인등록번호</span>
+            <span class="overview-value">120111-1178591</span>
+          </div>
+        </div>
 
-      <ul class="guestbook-list" id="guestbookList"></ul>
+        <div class="overview-card">
+          <h3>사업장 정보</h3>
+          <div class="overview-card-item">
+            <span class="overview-card-label">ADDRESS</span>
+            <span class="overview-card-value">인천광역시 동구 방축로83번길 23<br>인천산업용품유통단지 2단지 11동 310호</span>
+          </div>
+          <div class="overview-card-item">
+            <span class="overview-card-label">TEL / FAX</span>
+            <span class="overview-card-value">032-710-1393 / 032-565-1390</span>
+          </div>
+          <div class="overview-card-item">
+            <span class="overview-card-label">EMAIL</span>
+            <span class="overview-card-value"><a href="mailto:kmbiz2100@naver.com">kmbiz2100@naver.com</a></span>
+          </div>
+          <div class="overview-card-item">
+            <span class="overview-card-label">BLOG</span>
+            <span class="overview-card-value"><a href="https://blog.naver.com/kmbiz2100" target="_blank" rel="noopener">blog.naver.com/kmbiz2100</a></span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="section section-alt" id="contact">
-    <div class="container contact-inner">
-      <h2 class="section-title">문의하기</h2>
-      <p class="section-desc">궁금한 점이 있으시면 언제든지 편하게 연락 주세요.</p>
-
-      <form class="contact-form" id="contactForm">
-        <div class="form-row">
-          <input type="text" name="name" placeholder="이름" required>
-          <input type="email" name="email" placeholder="이메일" required>
+  <!-- CEO Message -->
+  <section class="section section-dark" id="ceo">
+    <div class="container">
+      <p class="kicker">CEO MESSAGE</p>
+      <div class="ceo-grid">
+        <div class="ceo-quote">
+          <h2 class="ceo-heading">"안전을 지키는<br>든든한 파트너가 되겠습니다."</h2>
+          <p>안녕하십니까, (주)케이엠산업 대표이사 이강민입니다.</p>
+          <p>저희 케이엠산업은 2021년 설립 이래, 산업안전용품 및 건설자재 전문기업으로서 현장의 안전을 책임진다는 사명감으로 쉼 없이 달려왔습니다.</p>
+          <p>단순한 제품 공급을 넘어, 고객 여러분의 현장에 가장 적합한 안전 솔루션을 제안하고, 최고의 품질과 합리적인 가격으로 신뢰받는 파트너가 되는 것이 저희의 목표입니다.</p>
+          <p>앞으로도 변함없는 초심으로 고객의 목소리에 귀 기울이며, 더 안전한 대한민국 산업 현장을 만드는 데 기여하겠습니다.</p>
         </div>
-        <textarea name="message" rows="5" placeholder="문의 내용을 입력해 주세요" required></textarea>
-        <button type="submit" class="btn btn-primary">문의 보내기</button>
-      </form>
-      <p class="form-status" id="formStatus"></p>
+        <div class="ceo-sign">
+          <span class="ceo-sign-title">(주)케이엠산업 대표이사</span>
+          <span class="ceo-sign-name">이 강 민</span>
+          <span class="ceo-sign-en">Lee Kang Min</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Business Areas -->
+  <section class="section" id="business">
+    <div class="container">
+      <p class="kicker">BUSINESS AREAS</p>
+      <h2 class="section-title">사업 영역</h2>
+
+      <div class="business-grid">
+        <div class="business-card">
+          <div class="num-badge">01</div>
+          <h3>산업안전용품</h3>
+          <p>안전모, 안전화, 안전벨트, 보안경 등 현장 작업자의 생명을 지키는 필수 안전 보호구 및 장비 공급</p>
+        </div>
+        <div class="business-card">
+          <div class="num-badge">02</div>
+          <h3>건설안전장비</h3>
+          <p>안전난간, 추락방지 설비, 안전표지판, 비계 자재 등 건설 현장의 안전 확보를 위한 전문 장비</p>
+        </div>
+        <div class="business-card">
+          <div class="num-badge">03</div>
+          <h3>부직포제품</h3>
+          <p>산업용 부직포, 필터재, 포장재 등 다양한 산업 분야에서 활용되는 고품질 부직포 제품</p>
+        </div>
+        <div class="business-card">
+          <div class="num-badge">04</div>
+          <h3>마스크·장갑류</h3>
+          <p>방진마스크, 작업장갑, 내화학 장갑 등 용도별 특화된 개인보호장비(PPE) 라인업</p>
+        </div>
+        <div class="business-card">
+          <div class="num-badge">05</div>
+          <h3>건축자재</h3>
+          <p>철물, 볼트/너트, 앵커, 각종 소모성 자재 등 건설 및 인테리어 현장에 필요한 필수 자재</p>
+        </div>
+        <div class="business-card">
+          <div class="num-badge">06</div>
+          <h3>전자상거래</h3>
+          <p>B2B 온라인 플랫폼 운영을 통한 간편한 주문 시스템과 신속하고 정확한 전국 배송 서비스</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values -->
+  <section class="section section-dark" id="values">
+    <div class="container">
+      <p class="kicker">CORE VALUES</p>
+      <h2 class="section-title">핵심 가치</h2>
+
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="num-badge">01</div>
+          <h3>안전 <span class="value-en">Safety</span></h3>
+          <p>사람과 현장을 최우선으로 보호합니다. 엄격한 품질 기준을 통과한 안전 용품만을 취급하여 무재해 현장을 지원합니다.</p>
+        </div>
+        <div class="value-card">
+          <div class="num-badge">02</div>
+          <h3>신뢰 <span class="value-en">Trust</span></h3>
+          <p>투명한 거래와 책임 있는 사후관리를 약속합니다. 고객과의 약속을 생명처럼 여기며, 정직한 비즈니스 파트너가 되겠습니다.</p>
+        </div>
+        <div class="value-card">
+          <div class="num-badge">03</div>
+          <h3>혁신 <span class="value-en">Innovation</span></h3>
+          <p>제품과 프로세스의 지속적인 개선을 추구합니다. 변화하는 산업 환경에 발맞춰 더 효율적이고 스마트한 솔루션을 제안합니다.</p>
+        </div>
+        <div class="value-card">
+          <div class="num-badge">04</div>
+          <h3>고객만족 <span class="value-en">Satisfaction</span></h3>
+          <p>고객의 니즈에 맞는 맞춤 솔루션을 제공합니다. 단순 납품을 넘어 현장의 문제를 함께 고민하고 해결하는 서비스 마인드를 갖춥니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Competitiveness -->
+  <section class="section" id="competitiveness">
+    <div class="container">
+      <p class="kicker">OUR COMPETITIVENESS</p>
+      <h2 class="section-title">경쟁력</h2>
+
+      <div class="competitiveness-list">
+        <div class="competitiveness-item">
+          <div class="num-badge num-badge-alt">01</div>
+          <div>
+            <h3>엄격한 품질관리 <span class="value-en">Quality Control</span></h3>
+            <p>신뢰할 수 있는 인증 제품만을 엄선하고, 철저한 입출고 검수 시스템을 통해 불량률 Zero를 지향합니다.</p>
+          </div>
+        </div>
+        <div class="competitiveness-item">
+          <div class="num-badge">02</div>
+          <div>
+            <h3>신속한 납품 <span class="value-en">Fast Delivery</span></h3>
+            <p>최적화된 재고 운영과 지역 밀착형 물류 시스템으로 고객이 필요한 시점에 정확하게 제품을 공급합니다.</p>
+          </div>
+        </div>
+        <div class="competitiveness-item">
+          <div class="num-badge num-badge-alt">03</div>
+          <div>
+            <h3>전문 상담 <span class="value-en">Professional Consulting</span></h3>
+            <p>현장에 대한 깊은 이해를 바탕으로 단순 판매를 넘어, 고객 환경에 최적화된 맞춤형 솔루션을 제안합니다.</p>
+          </div>
+        </div>
+        <div class="competitiveness-item">
+          <div class="num-badge">04</div>
+          <div>
+            <h3>합리적 가격 <span class="value-en">Reasonable Price</span></h3>
+            <p>제조사 직거래 및 파트너십을 통한 유통 구조 효율화로 고객에게 최상의 가격 경쟁력을 제공합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credit / Growth highlight -->
+  <section class="section section-dark" id="credit">
+    <div class="container">
+      <p class="kicker">CREDIT &amp; GROWTH</p>
+      <h2 class="section-title">신용도 및 성장</h2>
+      <div class="credit-grid">
+        <div class="credit-card">
+          <div class="credit-badge credit-badge-b-plus">B+</div>
+          <h3>DNA 신용등급</h3>
+          <p>민간·관급공사 등록기준(B+/B- 이상) 충족</p>
+        </div>
+        <div class="credit-card">
+          <div class="credit-badge">정상</div>
+          <h3>WATCH 등급</h3>
+          <p>신용등급 안정적 유지 가능성 높음</p>
+        </div>
+        <div class="credit-card">
+          <div class="credit-badge">+65%</div>
+          <h3>최근 3개년 매출 성장률</h3>
+          <p>2023년 이후 꾸준한 상승세를 이어가고 있습니다</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Major Partners -->
+  <section class="section" id="partners">
+    <div class="container">
+      <p class="kicker">MAJOR PARTNERS</p>
+      <h2 class="section-title">주요 거래처</h2>
+
+      <div class="partners-grid">
+        <div class="partner-card">
+          <span class="partner-tag">반도체 / 하이테크</span>
+          <h3>에이팩스 네트웍스</h3>
+          <p>삼성반도체 관련 안전용품 공급</p>
+        </div>
+        <div class="partner-card">
+          <span class="partner-tag">조경 / 공공시설</span>
+          <h3>아세아종합건설</h3>
+          <p>조경 및 공원 조성 안전용품 납품</p>
+        </div>
+        <div class="partner-card">
+          <span class="partner-tag">교육시설 / 관급공사</span>
+          <h3>유선종합건설(주)</h3>
+          <p>학교 현장 안전 및 건설용품 납품</p>
+        </div>
+        <div class="partner-card">
+          <span class="partner-tag">플랜트 / 제조설비</span>
+          <h3>우양에이치씨(주)</h3>
+          <p>대형 플랜트 업체 안전용품 납품</p>
+        </div>
+        <div class="partner-card">
+          <span class="partner-tag">인테리어 / 특수시설</span>
+          <h3>다원앤컴퍼니</h3>
+          <p>병원, 공항 인테리어 현장 안전용품</p>
+        </div>
+        <div class="partner-card">
+          <span class="partner-tag">환경 / 에너지</span>
+          <h3>그린에너지개발(주)</h3>
+          <p>환경 관련 업체 위생 및 안전용품</p>
+        </div>
+        <div class="partner-card">
+          <span class="partner-tag">건축 / 종교시설</span>
+          <h3>(주)사닥다리종합건설</h3>
+          <p>교회 및 종교시설 현장 안전용품</p>
+        </div>
+        <div class="partner-card">
+          <span class="partner-tag">EPC / 신재생에너지</span>
+          <h3>에스씨엔지니어링(주)</h3>
+          <p>수소연료 프로젝트 관련 협력 (코스닥 상장)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision -->
+  <section class="section section-dark" id="vision">
+    <div class="container">
+      <p class="kicker">VISION &amp; GOALS</p>
+      <h2 class="section-title">비전 및 목표</h2>
+
+      <div class="vision-box">
+        <span class="badge">VISION</span>
+        <p class="vision-quote">"대한민국 안전산업을 선도하는 기업"</p>
+      </div>
+
+      <div class="goals-grid">
+        <div class="goal-card">
+          <div class="num-badge">01</div>
+          <h3>고객 안전성과<br>운영 효율 개선</h3>
+          <p>단순 제품 공급을 넘어, 현장의 안전 수준을 높이고 작업 효율성을 극대화하는 솔루션을 제공합니다.</p>
+        </div>
+        <div class="goal-card">
+          <div class="num-badge">02</div>
+          <h3>제품·서비스 포트<br>폴리오 고도화</h3>
+          <p>변화하는 산업 트렌드에 맞춰 최신 안전 장비와 기술 기반 서비스를 지속적으로 발굴하고 확대합니다.</p>
+        </div>
+        <div class="goal-card">
+          <div class="num-badge">03</div>
+          <h3>지속가능 경영과<br>사회적 책임</h3>
+          <p>안전하고 건강한 사회를 만드는 데 기여하며, 투명하고 윤리적인 경영을 통해 신뢰받는 기업이 되겠습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shipping & Returns -->
+  <section class="section" id="shipping">
+    <div class="container">
+      <p class="kicker">SHIPPING &amp; RETURNS</p>
+      <h2 class="section-title">배송·교환·반품 안내</h2>
+
+      <div class="policy-grid">
+        <div class="policy-card">
+          <h3>배송 안내</h3>
+          <ul class="policy-list">
+            <li>결제 완료 후 익일 출고됩니다. (택배사 사정, 품절·재입고 상황에 따라 지연될 수 있습니다.)</li>
+            <li>배송 기간은 출고 후 1~4일 정도 소요됩니다.</li>
+            <li>10만 원 이상 구매 시 배송비 무료, 기본 배송비는 4,000원입니다.</li>
+            <li>제주 및 도서산간 지역은 추가 요금이 발생합니다.</li>
+            <li>부피가 크거나 무거운 자재·장비는 별도 안내에 따라 화물 배송으로 진행될 수 있습니다.</li>
+          </ul>
+        </div>
+
+        <div class="policy-card">
+          <h3>교환 및 반품 안내</h3>
+          <ul class="policy-list">
+            <li>상품 수령일로부터 7일 이내 교환·반품(환불)이 가능합니다.</li>
+            <li>단순 변심이나 주문 착오로 인한 교환·반품 시 왕복 배송비가 부과됩니다.</li>
+            <li>상품은 받으신 그대로 포장하여 발송 부탁드립니다.</li>
+          </ul>
+
+          <h4 class="policy-subheading">반품·교환 불가 사유</h4>
+          <ul class="policy-list">
+            <li>반품 요청 기간이 지난 경우</li>
+            <li>구매자 책임으로 상품이 멸실 또는 훼손된 경우</li>
+            <li>포장 개봉 후 상품 가치가 현저히 상실된 경우</li>
+            <li>구매자의 사용 또는 일부 소비로 상품 가치가 현저히 감소한 경우</li>
+            <li>※ 안전용품 특성상, 포장을 개봉한 개인보호장비(마스크·장갑 등 위생용품)는 단순 변심에 의한 반품이 어렵습니다.</li>
+          </ul>
+        </div>
+
+        <div class="policy-card">
+          <h3>환불 안내</h3>
+          <ul class="policy-list">
+            <li>반품 확인 후 결제 금액을 환불해 드립니다.</li>
+            <li>신용카드의 경우 카드사 또는 결제일에 따라 처리 일정이 달라질 수 있습니다.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="container">
+      <p class="kicker">CONTACT</p>
+      <h2 class="section-title">언제든 편하게 문의해 주세요</h2>
+      <p class="section-desc contact-desc">필요하신 제품과 현장 정보만 남겨주시면, 담당자가 맞춤 견적과 납품 일정을 빠르게 안내드립니다.</p>
+
+      <div class="contact-layout">
+        <div class="contact-side">
+          <div class="contact-quick-card">
+            <div class="quick-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8A2.5 2.5 0 0 1 17.5 16H9l-5 4.5V5.5Z"/></svg>
+              <div>
+                <span class="quick-label">이메일</span>
+                <span class="quick-value"><a href="mailto:kmbiz2100@naver.com">kmbiz2100@naver.com</a></span>
+              </div>
+            </div>
+            <div class="quick-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+              <div>
+                <span class="quick-label">전화 / 팩스</span>
+                <span class="quick-value">032-710-1393 / 032-565-1390</span>
+              </div>
+            </div>
+            <div class="quick-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+              <div>
+                <span class="quick-label">주소</span>
+                <span class="quick-value">인천광역시 동구 방축로83번길 23, 인천산업용품유통단지 2단지 11동 310호</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-card">
+            <h3>이렇게 진행됩니다</h3>
+            <div class="process-step">
+              <span class="process-num">1</span>
+              <p>문의 접수 — 필요 제품·수량·현장 정보 확인</p>
+            </div>
+            <div class="process-step">
+              <span class="process-num">2</span>
+              <p>맞춤 견적 및 납품 일정 제안</p>
+            </div>
+            <div class="process-step">
+              <span class="process-num">3</span>
+              <p>계약 체결 및 배송·시공 진행</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap">
+          <form class="contact-form" id="contactForm" novalidate>
+            <p class="required-note">* 표시는 필수 항목입니다.</p>
+
+            <div class="form-row">
+              <div class="field">
+                <input type="text" name="company" placeholder="회사·기관명 *" data-required>
+                <span class="field-error">필수 항목이에요. 이 칸을 입력해 주세요.</span>
+              </div>
+              <div class="field">
+                <input type="text" name="name" placeholder="담당자명 *" data-required>
+                <span class="field-error">필수 항목이에요. 이 칸을 입력해 주세요.</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <input type="email" name="email" placeholder="이메일 *" data-required>
+                <span class="field-error">필수 항목이에요. 이 칸을 입력해 주세요.</span>
+              </div>
+              <div class="field">
+                <input type="tel" name="phone" placeholder="연락처 *" data-required>
+                <span class="field-error">필수 항목이에요. 이 칸을 입력해 주세요.</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <select name="interest">
+                  <option value="">관심 제품군 선택</option>
+                  <option>산업안전용품</option>
+                  <option>건설안전장비</option>
+                  <option>부직포제품</option>
+                  <option>마스크·장갑류</option>
+                  <option>건축자재</option>
+                  <option>기타</option>
+                </select>
+              </div>
+              <div class="field">
+                <input type="text" name="scale" placeholder="예상 수량 / 현장 규모 *" data-required>
+                <span class="field-error">필수 항목이에요. 이 칸을 입력해 주세요.</span>
+              </div>
+            </div>
+            <div class="field">
+              <input type="text" name="schedule" placeholder="희망 납기 (예: 2026년 7월 중)">
+            </div>
+            <div class="field">
+              <textarea name="message" rows="4" placeholder="문의 내용을 자유롭게 적어주세요. *" data-required></textarea>
+              <span class="field-error">필수 항목이에요. 이 칸을 입력해 주세요.</span>
+            </div>
+            <button type="submit" class="btn btn-primary">문의 보내기</button>
+            <p class="form-help">버튼을 누르면 작성하신 내용이 담당 메일로 전달됩니다.</p>
+          </form>
+
+          <div class="contact-success" id="contactSuccess" hidden>
+            <span class="contact-success-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 2.5 2.5L16 9.5"/></svg>
+            </span>
+            <h3>문의가 접수되었어요</h3>
+            <p>영업일 기준 1~2일 안에 연락드릴게요. 소중한 문의 감사합니다.</p>
+            <button type="button" class="btn btn-outline-navy" id="contactReset">다시 문의하기</button>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
+<div class="footer-utility">
+  <div class="container footer-utility-inner">
+    <a href="index.html#about">회사소개</a>
+    <a href="#">이용약관</a>
+    <a href="#">개인정보처리방침</a>
+    <a href="index.html#shipping">쇼핑몰 이용안내</a>
+    <a href="index.html#contact">고객센터</a>
+    <a href="#">사업자정보확인</a>
+  </div>
+</div>
+
 <footer class="footer">
-  <div class="container footer-inner">
-    <div class="logo">혼잡스<span>.</span></div>
-    <a href="https://blog.naver.com/kmbiz2100" target="_blank" rel="noopener" class="footer-blog-link">네이버 블로그</a>
-    <p>&copy; 2026 HONJAPSU. All rights reserved.</p>
+  <div class="container footer-grid">
+    <div class="footer-col footer-col-brand">
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <rect x="0" y="0" width="40" height="40" rx="9" fill="#16264f"/>
+          <rect x="9" y="9" width="15" height="15" rx="1.5" transform="rotate(45 16.5 16.5)" fill="#f5f6fa" stroke="#e8622c" stroke-width="2.4"/>
+          <rect x="16" y="16" width="15" height="15" rx="1.5" transform="rotate(45 23.5 23.5)" fill="#f5f6fa" stroke="#4a72d9" stroke-width="2.4"/>
+        </svg>
+        <span class="logo-text">KM FORCE</span>
+      </div>
+      <p class="footer-copyright">KM Industry Co., Ltd.<br>&copy; 2026 (주)케이엠산업. All rights reserved.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>고객센터</h4>
+      <p class="footer-phone">032-710-1393</p>
+      <ul>
+        <li>상담가능시간: 평일 09:00~18:00</li>
+        <li>(주말·공휴일 휴무, 점심 12:00~13:00)</li>
+        <li>Fax : 032-565-1390</li>
+        <li>Mail : kmbiz2100@naver.com</li>
+        <li>Blog : <a href="https://blog.naver.com/kmbiz2100" target="_blank" rel="noopener">blog.naver.com/kmbiz2100</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>사업자 등록 정보</h4>
+      <ul>
+        <li><strong>(주)케이엠산업</strong> (대표자: 이강민)</li>
+        <li>인천광역시 동구 방축로83번길 23, 인천산업용품유통단지 2단지 11동 310호</li>
+        <li>사업자등록번호 : 163-81-02313</li>
+        <li>법인등록번호 : 120111-1178591</li>
+        <li>통신판매신고번호 : 등록 예정</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>무통장 입금 안내</h4>
+      <ul>
+        <li>입금 계좌 정보는 등록 준비 중입니다.</li>
+        <li>주문 완료 후 담당자가 입금 계좌를 별도로 안내드립니다.</li>
+      </ul>
+    </div>
   </div>
 </footer>
+<button class="chat-toggle" id="chatToggle" aria-label="문의 채팅 열기">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8A2.5 2.5 0 0 1 17.5 16H9l-5 4.5V5.5Z"/></svg>
+</button>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js"></script>
+<div class="chat-widget" id="chatWidget" hidden>
+  <div class="chat-widget-header">
+    <div class="chat-widget-brand">
+      <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <rect x="0" y="0" width="40" height="40" rx="9" fill="#16264f"/>
+        <rect x="9" y="9" width="15" height="15" rx="1.5" transform="rotate(45 16.5 16.5)" fill="#f5f6fa" stroke="#e8622c" stroke-width="2.4"/>
+        <rect x="16" y="16" width="15" height="15" rx="1.5" transform="rotate(45 23.5 23.5)" fill="#f5f6fa" stroke="#4a72d9" stroke-width="2.4"/>
+      </svg>
+      <div>
+        <strong>KM FORCE</strong>
+        <span>평일 09:00~18:00 운영</span>
+      </div>
+    </div>
+    <button class="chat-widget-close" id="chatClose" aria-label="닫기">✕</button>
+  </div>
+  <div class="chat-widget-body">
+    <div class="chat-bubble">
+      안녕하세요. 안전을 지키는 든든한 파트너, KM FORCE입니다.<br>무엇을 도와드릴까요?
+    </div>
+  </div>
+  <div class="chat-widget-footer">
+    <a href="index.html#contact" class="btn btn-primary">문의하기</a>
+    <a href="tel:032-710-1393" class="chat-widget-tel">☎ 상담전화 032-710-1393</a>
+  </div>
+</div>
+
+<script src="cart.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
