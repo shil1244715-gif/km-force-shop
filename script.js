@@ -2,112 +2,110 @@
 const navToggle = document.getElementById('navToggle');
 const nav = document.getElementById('nav');
 
-navToggle.addEventListener('click', () => {
-  nav.classList.toggle('open');
-});
-
-nav.querySelectorAll('a').forEach((link) => {
-  link.addEventListener('click', () => {
-    nav.classList.remove('open');
+if (navToggle && nav) {
+  navToggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
   });
-});
 
-// Contact form — saves submissions to Supabase
+  nav.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+    });
+  });
+}
+
+// Contact form — client-side validation + success/reset flow
 const contactForm = document.getElementById('contactForm');
-const formStatus = document.getElementById('formStatus');
+const contactSuccess = document.getElementById('contactSuccess');
+const contactReset = document.getElementById('contactReset');
 
-contactForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
+if (contactForm && contactSuccess) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-  const formData = new FormData(contactForm);
-  const submitButton = contactForm.querySelector('button[type="submit"]');
-  submitButton.disabled = true;
-  formStatus.textContent = '전송 중...';
+    let hasError = false;
+    contactForm.querySelectorAll('[data-required]').forEach((input) => {
+      const field = input.closest('.field');
+      const isEmpty = input.value.trim() === '';
+      field.classList.toggle('has-error', isEmpty);
+      if (isEmpty) hasError = true;
+    });
 
-  const { error } = await supabaseClient.from('contact_messages').insert({
-    name: formData.get('name'),
-    email: formData.get('email'),
-    message: formData.get('message'),
+    if (hasError) return;
+
+    contactForm.hidden = true;
+    contactSuccess.hidden = false;
   });
 
-  submitButton.disabled = false;
-
-  if (error) {
-    formStatus.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해 주세요.';
-    return;
-  }
-
-  formStatus.textContent = '문의가 접수되었습니다. 빠르게 답변드릴게요!';
-  contactForm.reset();
-});
-
-// Guestbook — reads and writes entries via Supabase
-const guestbookForm = document.getElementById('guestbookForm');
-const guestbookStatus = document.getElementById('guestbookStatus');
-const guestbookList = document.getElementById('guestbookList');
-
-function renderGuestbookEntries(entries) {
-  guestbookList.innerHTML = '';
-
-  if (entries.length === 0) {
-    guestbookList.innerHTML = '<li class="guestbook-empty">아직 남겨진 메시지가 없어요. 첫 손님이 되어주세요!</li>';
-    return;
-  }
-
-  for (const entry of entries) {
-    const item = document.createElement('li');
-    item.className = 'guestbook-item';
-
-    const message = document.createElement('span');
-    message.className = 'guestbook-message';
-    message.textContent = entry.message;
-
-    const time = document.createElement('span');
-    time.className = 'guestbook-time';
-    time.textContent = new Date(entry.created_at).toLocaleString('ko-KR');
-
-    item.append(message, time);
-    guestbookList.append(item);
-  }
-}
-
-async function loadGuestbookEntries() {
-  const { data, error } = await supabaseClient
-    .from('guestbook')
-    .select('id, message, created_at')
-    .order('created_at', { ascending: false })
-    .limit(50);
-
-  if (error) {
-    guestbookList.innerHTML = '<li class="guestbook-empty">방명록을 불러오지 못했습니다.</li>';
-    return;
-  }
-
-  renderGuestbookEntries(data);
-}
-
-guestbookForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  const formData = new FormData(guestbookForm);
-  const submitButton = guestbookForm.querySelector('button[type="submit"]');
-  submitButton.disabled = true;
-  guestbookStatus.textContent = '등록 중...';
-
-  const { error } = await supabaseClient.from('guestbook').insert({
-    message: formData.get('message'),
+  contactForm.querySelectorAll('[data-required]').forEach((input) => {
+    input.addEventListener('input', () => {
+      if (input.value.trim() !== '') {
+        input.closest('.field').classList.remove('has-error');
+      }
+    });
   });
+}
 
-  submitButton.disabled = false;
+if (contactReset) {
+  contactReset.addEventListener('click', () => {
+    contactForm.reset();
+    contactForm.querySelectorAll('.field').forEach((field) => field.classList.remove('has-error'));
+    contactSuccess.hidden = true;
+    contactForm.hidden = false;
+  });
+}
 
-  if (error) {
-    guestbookStatus.textContent = '등록에 실패했습니다. 잠시 후 다시 시도해 주세요.';
-    return;
+// Hero carousel (home page only)
+const heroCarousel = document.getElementById('heroCarousel');
+
+if (heroCarousel) {
+  const slides = heroCarousel.querySelectorAll('.hero-slide');
+  const dots = heroCarousel.querySelectorAll('.hero-dot');
+  const prevBtn = heroCarousel.querySelector('.hero-arrow-prev');
+  const nextBtn = heroCarousel.querySelector('.hero-arrow-next');
+  const progressBar = heroCarousel.querySelector('.hero-progress-bar');
+  let current = 0;
+  let timer;
+
+  function goToSlide(index) {
+    current = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => slide.classList.toggle('is-active', i === current));
+    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === current));
+    restartTimer();
   }
 
-  guestbookStatus.textContent = '';
-  guestbookForm.reset();
-  loadGuestbookEntries();
-});
+  function restartTimer() {
+    if (!progressBar) return;
+    progressBar.style.animation = 'none';
+    // Force reflow so the animation restarts from 0 every time.
+    void progressBar.offsetWidth;
+    progressBar.style.animation = '';
+    clearTimeout(timer);
+    timer = setTimeout(() => goToSlide(current + 1), 6000);
+  }
 
-loadGuestbookEntries();
+  dots.forEach((dot, i) => dot.addEventListener('click', () => goToSlide(i)));
+  if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(current - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(current + 1));
+
+  restartTimer();
+}
+
+// Home "인기 상품" category tab filter
+const bestGrid = document.getElementById('bestProductGrid');
+
+if (bestGrid) {
+  const tabs = document.querySelectorAll('.best-tab');
+  const items = bestGrid.querySelectorAll('.product-item');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach((t) => t.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      const cat = tab.dataset.cat;
+      items.forEach((item) => {
+        item.hidden = cat !== 'all' && item.dataset.cat !== cat;
+      });
+    });
+  });
+}
