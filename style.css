@@ -297,6 +297,20 @@ a {
   margin-bottom: 10px;
 }
 
+.profile-closing {
+  text-align: center;
+}
+
+.profile-closing .section-title {
+  margin-bottom: 16px;
+}
+
+.profile-closing .section-desc {
+  color: var(--color-text-muted);
+  margin-bottom: 28px;
+  word-break: keep-all;
+}
+
 .section-title {
   font-size: clamp(1.7rem, 3.4vw, 2.3rem);
   font-weight: 800;
