@@ -26,8 +26,13 @@ cart.html / cart.js의 장바구니 인프라는 아직 코드에 남아있지�
   `my-shopping-site`로 나오면 `git remote set-url origin https://github.com/shil1244715-gif/km-force-shop`으로
   고칠 것 (세션이 리셋되면 종종 되돌아가 있음).
 - 이 샌드박스의 프록시는 `blog.naver.com`/`rss.blog.naver.com`은 허용하지만 `*.pstatic.net`(이미지
-  CDN)은 차단합니다 — 그래서 이미지 다운로드가 안 되고, `<img src="https://blogthumb.pstatic.net/...">`
-  로 직접 hotlink해야 합니다. 실제 방문자 브라우저는 이 프록시의 영향을 받지 않으므로 정상 로드됩니다.
+  CDN)은 차단합니다 — 그래서 이 샌드박스 안에서는 이미지 다운로드가 안 됩니다.
+  **(정정, 2026-08-30)** 예전엔 여기서 "실제 방문자 브라우저는 이 프록시의 영향을 받지 않으므로
+  정상 로드됩니다"라고 적혀 있었는데, 이건 **틀린 가정이었음**이 확인됨 — `blogthumb.pstatic.net`
+  hotlink URL 자체가 (샌드박스와 무관하게) 진짜로 죽은 링크(404)였고, 실제 사용자 화면에서도
+  깨진 이미지로 떴음. 자세한 내용과 조치는 아래 "원본 12개 상품 사진 깨짐" 항목 참고.
+  **교훈: `*.pstatic.net` hotlink는 절대 다시 쓰지 말 것** — 네이버 블로그 이미지는 만료되는 것으로
+  보임. 사진은 항상 사용자에게 파일로 받아서 저장소에 로컬로 올려야 함 (K2/장화 사진처럼).
 
 ## 페이지 구조
 
@@ -116,6 +121,35 @@ search.js의 renderSearchCard(), product-detail.js의 상단 태그(`#detailTags
 앞으로 새 상품을 추가할 때는 반드시 이 방식으로 (1) products-data.js에 id를 추가하고 (2) 그 id를
 참조하는 모든 정적 카드의 href도 같은 id로 맞춰야 함 — products-data.js에만 추가하고 정적 카드의
 href를 빠뜨리면 "상세보기"가 다른 상품 페이지로 잘못 연결되거나 404처럼 보일 수 있음.
+
+## 원본 12개 상품 사진 깨짐 (2026-08-30 확인 및 조치)
+
+사용자가 상세페이지 스크린샷을 보내면서 사진이 깨져 보인다고 알려줌. 확인해보니 원래
+`PHOTOS` 객체에 있던 `blogthumb.pstatic.net` hotlink URL 11개(helmet/boots/harness/
+signboard/barrier/mask/goggles/nitrileGloves/vest/gloves/extinguisher)가 **전부 진짜로
+죽은 링크(404)**였음 — WebFetch로 URL 3개를 직접 확인한 결과 3개 다 404. 나머지 8개도
+같은 blogthumb 도메인/패턴이라 사실상 다 죽었다고 판단.
+
+이 URL들을 쓰던 12개 상품(KM-HM-001, KM-HM-003, KM-SB-005, KM-SH-014, KM-SG-009,
+KM-SR-011, KM-MK-022, KM-GG-007, KM-GL-015, KM-VT-006, KM-GL-019, KM-FE-001)의 사진을
+전부 `photo: null`로 바꾸고(→ search.js/product-detail.js가 이미 갖고 있던 "사진 없으면
+카테고리 아이콘 placeholder 표시" 로직으로 자동 대체됨), 정적 HTML(index.html,
+products-construction.html, products-personal.html, products-fire.html)에 하드코딩돼
+있던 `<img src="https://blogthumb...">` 태그도 전부 같은 placeholder(`product-photo-
+placeholder` + 카테고리별 SVG 아이콘) 마크업으로 교체함. `products-data.js`의 `PHOTOS`
+객체에서도 이 죽은 URL 11개를 아예 삭제함(주석만 남김).
+
+**후속 조치 필요**: 이 12개 상품은 지금 깨진 이미지 대신 깔끔한 placeholder 아이콘만 보임 —
+실제 사진은 아님. 사용자가 K2/장화 사진을 보내준 것처럼, 이 12개 상품의 실제 사진 파일을
+받으면 (로고/히어로/K2 사진과 동일한 방식으로) 로컬로 저장해서 영구적으로 붙여야 함.
+**절대 `blogthumb.pstatic.net` 같은 네이버 블로그 이미지 URL을 다시 hotlink하지 말 것** —
+언젠가 반드시 만료됨.
+
+사용자가 스크린샷에서 함께 지적한 "재고보유/HIT 태그가 아직 보임 + 코드/규격/원산지
+빈칸"은 실제 배포된 product-detail.js를 WebFetch로 직접 확인한 결과 코드 자체는 이미
+정상(태그 완전 제거됨, hidden=true)이었음 — 즉 실제 버그가 아니라 사용자 브라우저의
+캐시 문제였을 가능성이 높음. 다음에 사용자가 비슷한 증상을 보고하면 먼저 하드 새로고침
+(Ctrl+Shift+R) 또는 시크릿창으로 재확인해보라고 안내할 것.
 
 ## 실제 공급사 카탈로그 상품 등록 (K2/블랙야크/장화)
 
