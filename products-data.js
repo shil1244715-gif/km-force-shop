@@ -11,6 +11,15 @@ const PHOTOS = {
   vest: "https://blogthumb.pstatic.net/MjAyNjA0MjRfMTI1/MDAxNzc3MDExMzE5NTQ3.cs15T3fzGew2NLUrhdkxMDvCp_-AfOWLTgV7K3R9uMwg.kmf3EXJX4sAWme4sarWDw86bSrhtDuByoXwsQDJAl6Eg.PNG/image.png?type=w800",
   gloves: "https://blogthumb.pstatic.net/MjAyNjA0MjNfMjEz/MDAxNzc2OTEwNjY0MDgz.BvpO8sPXGtSaYejopuw7Nwwu5SRJFVUMnQfkrenSO_Mg.owwYYMeWMQH5oVxkj-6YgFGIp6In1JKqmvUOotAzGzAg.PNG/image.png?type=w800",
   extinguisher: "https://blogthumb.pstatic.net/MjAyNjA0MjdfMjAy/MDAxNzc3MjYzMTk3OTEy.mK1FyoxUL4R7hdMAise8cQhUqZxzR2KQeAhns-JM7Kwg.yw_u8QVPevjG3bypLKOJR-3Y8IDUirjIRW3V5AHqCm8g.PNG/image.png?type=w800",
+  // 공급사 카탈로그 제공 사진 (K2코리아 / 블랙야크 / 대신화학 / 에스큐브 / 빅스탑)
+  k2_117be: "product-k2-117be.jpg",
+  k2_107be: "product-k2-107be.jpg",
+  k2_51n: "product-k2-51n.jpg",
+  k2_26: "product-k2-26.jpg",
+  blackyakYak501d: "product-blackyak-yak501d.jpg",
+  daeshinBoots: "product-daeshin-boots.jpg",
+  scubeInsulatedBoots: "product-scube-insulated-boots.jpg",
+  vicstopChemicalBoots: "product-vicstop-chemical-boots.jpg",
 };
 
 // Shared product catalog — used by product listing cards and the product detail page.
@@ -32,6 +41,22 @@ const PRODUCTS = [
     desc: "비계 설치 구간의 추락 사고를 예방하는 조립식 안전난간대입니다." },
   { id: "KM-CB-003", name: "안전벨트 고리 (카라비너)", price: 18000, cat: "construction", catLabel: "건설안전용품", catPage: "products-construction.html", spec: "CE 인증", origin: "수입", badge: "", hit: false, photo: null,
     desc: "안전대와 함께 사용하는 고강도 카라비너 고리로, 국제 인증을 획득한 제품입니다." },
+  { id: "KM-SH-020", name: "K2 워킹화 (K2-117BE, 베이지)", price: 58000, cat: "construction", catLabel: "건설안전용품", catPage: "products-construction.html", spec: "벨크로 스트랩형", origin: "국내", badge: "", hit: false, photo: PHOTOS.k2_117be,
+    desc: "K2 세이프티의 벨크로 스트랩형 워킹화입니다. 착탈이 편리해 현장 출입이 잦은 작업에 적합합니다." },
+  { id: "KM-SH-021", name: "K2 스틸토캡 안전화 (K2-107BE)", price: 89000, cat: "construction", catLabel: "건설안전용품", catPage: "products-construction.html", spec: "스틸토캡·BOA 다이얼", origin: "국내", badge: "", hit: false, photo: PHOTOS.k2_107be,
+    desc: "스틸토캡으로 발끝을 보호하고, BOA 다이얼로 발등 조임을 세밀하게 조절할 수 있는 K2 안전화입니다." },
+  { id: "KM-SH-022", name: "K2 방한 안전화 (K2-51N)", price: 98000, cat: "construction", catLabel: "건설안전용품", catPage: "products-construction.html", spec: "GORE-TEX 방한", origin: "국내", badge: "", hit: false, photo: PHOTOS.k2_51n,
+    desc: "GORE-TEX 소재를 적용한 K2 방한 안전화로, 동절기 외부 현장 작업에 적합합니다." },
+  { id: "KM-SH-023", name: "K2 비계화 (K2-26)", price: 79000, cat: "construction", catLabel: "건설안전용품", catPage: "products-construction.html", spec: "비계작업용", origin: "국내", badge: "", hit: false, photo: PHOTOS.k2_26,
+    desc: "비계 설치·해체 작업에 특화된 K2 비계화로, 발목 지지력과 접지력을 강화했습니다." },
+  { id: "KM-SH-024", name: "블랙야크 안전화 (YAK-501D)", price: 85000, cat: "construction", catLabel: "건설안전용품", catPage: "products-construction.html", spec: "BOA 다이얼", origin: "국내", badge: "", hit: false, photo: PHOTOS.blackyakYak501d,
+    desc: "블랙야크의 BOA 다이얼 적용 안전화로, 끈 없이 다이얼로 조임을 조절할 수 있습니다." },
+  { id: "KM-SH-025", name: "대신 안전 장화", price: 32000, cat: "construction", catLabel: "건설안전용품", catPage: "products-construction.html", spec: "PVC 인젝션", origin: "국내", badge: "", hit: false, photo: PHOTOS.daeshinBoots,
+    desc: "우천·습지 현장에 적합한 PVC 인젝션 공법의 대신 안전 장화입니다." },
+  { id: "KM-SH-026", name: "에스큐브 절연장화 (고압용)", price: 62000, cat: "construction", catLabel: "건설안전용품", catPage: "products-construction.html", spec: "내전압 절연", origin: "국내", badge: "", hit: false, photo: PHOTOS.scubeInsulatedBoots,
+    desc: "전기 작업 현장에서 사용하는 에스큐브 고압용 절연장화입니다." },
+  { id: "KM-SH-027", name: "빅스탑 내화학 장화", price: 48000, cat: "construction", catLabel: "건설안전용품", catPage: "products-construction.html", spec: "내화학 소재", origin: "국내", badge: "", hit: false, photo: PHOTOS.vicstopChemicalBoots,
+    desc: "화학 약품 취급 현장에 적합한 빅스탑 내화학 장화입니다." },
 
   // 개인안전용품
   { id: "KM-MK-022", name: "방진마스크 2급 (10매입)", price: 9900, cat: "personal", catLabel: "개인안전용품", catPage: "products-personal.html", spec: "KF80", origin: "국내", badge: "", hit: false, photo: PHOTOS.mask,
