@@ -123,6 +123,23 @@ a {
   width: 32px;
   height: 32px;
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.logo-mark.on-dark {
+  background: #fff;
+  border-radius: 7px;
+  padding: 4px;
+  box-sizing: border-box;
 }
 
 .logo-text {
