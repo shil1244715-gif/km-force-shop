@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>장바구니 | KM FORCE</title>
+<title>상품 검색 | KM FORCE</title>
+<meta name="description" content="KM FORCE 상품 검색결과">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -61,34 +62,35 @@
 <main>
   <section class="section product-hero">
     <div class="container">
-      <p class="kicker">SHOPPING CART</p>
-      <h1 class="section-title">장바구니</h1>
+      <a href="index.html#products" class="back-link">← 전체 제품 카테고리</a>
+      <p class="kicker">SEARCH</p>
+      <h1 class="section-title">'<span id="queryText"></span>' 검색결과</h1>
+      <p class="section-desc" id="queryDesc">상품명으로 검색한 결과입니다.</p>
     </div>
   </section>
 
   <section class="section" style="padding-top: 0;">
     <div class="container">
-      <div id="cartLayout" class="cart-layout" hidden>
-        <div class="cart-list" id="cartList"></div>
-
-        <div class="cart-summary">
-          <h3>주문 요약</h3>
-          <div class="cart-summary-row">
-            <span>상품 수량</span>
-            <span id="summaryCount">0개</span>
-          </div>
-          <div class="cart-summary-total">
-            <span>총 합계</span>
-            <span id="summaryTotal">0원</span>
-          </div>
-          <a href="checkout.html" class="btn btn-primary">주문하기</a>
-        </div>
+      <div class="product-list-bar">
+        <span class="product-list-count" id="resultCount">검색 중...</span>
       </div>
 
-      <div id="cartEmpty" class="cart-empty">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.4"/><circle cx="18" cy="21" r="1.4"/><path d="M2.5 3h2l2.6 12.4a2 2 0 0 0 2 1.6h7.4a2 2 0 0 0 2-1.6L21 7H6"/></svg>
-        <p>장바구니가 비어 있어요.</p>
-        <a href="index.html#products" class="btn btn-primary">제품 둘러보기</a>
+      <div class="product-grid" id="searchGrid" hidden></div>
+
+      <div class="empty-state" id="emptyState" hidden>
+        <p class="empty-state-title">검색결과가 없습니다.</p>
+        <p class="empty-state-desc">다른 검색어로 다시 시도하시거나, 아래 카테고리에서 전체 상품을 둘러보세요.</p>
+        <div class="empty-state-links">
+          <a href="products-construction.html" class="btn btn-secondary">건설안전용품</a>
+          <a href="products-personal.html" class="btn btn-secondary">개인안전용품</a>
+          <a href="products-fire.html" class="btn btn-secondary">소방안전용품</a>
+        </div>
+        <a href="index.html#contact" class="btn btn-primary" style="margin-top:14px;">찾는 상품 문의하기</a>
+      </div>
+
+      <div class="product-note">
+        <p>※ 실제 제품 사진은 준비되는 대로 교체될 예정입니다. 정확한 사양과 가격은 문의를 통해 안내받으실 수 있습니다.</p>
+        <a href="index.html#contact" class="btn btn-primary">원하는 상품 문의하기</a>
       </div>
     </div>
   </section>
@@ -97,8 +99,8 @@
 <div class="footer-utility">
   <div class="container footer-utility-inner">
     <a href="company-profile.html">회사소개</a>
-    <a href="#">이용약관</a>
-    <a href="#">개인정보처리방침</a>
+    <a href="terms.html">이용약관</a>
+    <a href="privacy-policy.html">개인정보처리방침</a>
     <a href="shopping-guide.html">쇼핑몰 이용안내</a>
     <a href="index.html#contact">고객센터</a>
     <a href="#">사업자정보확인</a>
@@ -181,6 +183,8 @@
   </div>
 </div>
 
+<script src="products-data.js"></script>
+<script src="search.js"></script>
 <script src="cart.js"></script>
 <script src="script.js"></script>
 </body>
