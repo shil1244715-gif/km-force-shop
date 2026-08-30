@@ -58,16 +58,28 @@ function relatedBadgeHtml(p) {
 
   const detailInfoSection = document.getElementById('detailInfoSection');
   const detailInfoGrid = document.getElementById('detailInfoGrid');
-  if (product.details && product.details.length && detailInfoSection && detailInfoGrid) {
-    detailInfoGrid.innerHTML = product.details.map((d) => `
-      <div class="detail-feature-card">
-        <div class="detail-feature-mark"></div>
-        <div>
-          <h3>${d.title}</h3>
-          <p>${d.desc}</p>
+  const detailInfoImageWrap = document.getElementById('detailInfoImageWrap');
+  const hasDetails = product.details && product.details.length;
+  const hasDetailImage = !!product.detailImage;
+  if ((hasDetails || hasDetailImage) && detailInfoSection) {
+    if (hasDetails && detailInfoGrid) {
+      detailInfoGrid.innerHTML = product.details.map((d) => `
+        <div class="detail-feature-card">
+          <div class="detail-feature-mark"></div>
+          <div>
+            <h3>${d.title}</h3>
+            <p>${d.desc}</p>
+          </div>
         </div>
-      </div>
-    `).join('');
+      `).join('');
+    }
+    if (hasDetailImage && detailInfoImageWrap) {
+      detailInfoImageWrap.innerHTML = `
+        <img src="${product.detailImage}" alt="${product.name} 제조사 제공 상세 이미지" class="detail-info-image">
+        <p class="detail-info-image-caption">제조사(K2 세이프티) 제공 자료</p>
+      `;
+      detailInfoImageWrap.hidden = false;
+    }
     detailInfoSection.hidden = false;
   }
 

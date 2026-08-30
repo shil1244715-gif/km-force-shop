@@ -47,7 +47,8 @@ const PRODUCTS = [
     details: [
       { title: "데저트 샌드 컬러", desc: "사무직 환경에도 잘 어울리는 밝은 톤의 컬러를 적용해, 흙·먼지 등에 의한 오염이 눈에 덜 띕니다." },
       { title: "타이크로스밴드", desc: "새롭게 개발한 신소재 스트랩을 적용해 경량성·통기성·투습성·발수 성능을 확보했습니다." },
-    ] },
+    ],
+    detailImage: "product-k2-117be-details.jpg" },
   { id: "KM-SH-021", name: "K2 스틸토캡 안전화 (K2-107BE)", price: 89000, cat: "construction", catLabel: "건설안전용품", catPage: "products-construction.html", spec: "스틸토캡·BOA 다이얼", origin: "국내", badge: "", hit: false, photo: PHOTOS.k2_107be,
     desc: "스틸토캡으로 발끝을 보호하고, BOA 다이얼로 발등 조임을 세밀하게 조절할 수 있는 K2 안전화입니다.",
     details: [
