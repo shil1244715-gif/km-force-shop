@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>㈜케이엠산업 | 건설현장 안전용품 전문몰</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #16305A;
+    --navy-light: #1B3B6F;
+    --orange: #E8622C;
+    --yellow: #F5B400;
+    --bg: #F4F5F7;
+    --line: #E1E3E8;
+    --text: #22262B;
+    --text-soft: #6B7078;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+
+  /* === 상단 유틸 바 === */
+  .util-bar {
+    background: var(--navy);
+    color: #C7D0DE;
+    font-size: 12.5px;
+    padding: 8px 4vw;
+    display: flex;
+    justify-content: space-between;
+  }
+  .util-bar a { color: #C7D0DE; margin-left: 14px; }
+  .util-bar a:hover { color: var(--yellow); }
+  .util-bar .cs b { color: var(--yellow); }
+
+  /* === 헤더 === */
+  header {
+    background: var(--white);
+    padding: 22px 4vw;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    border-bottom: 3px solid var(--navy);
+    flex-wrap: wrap;
+  }
+  .logo {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+  .logo span { color: var(--orange); }
+  .logo small {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-soft);
+    letter-spacing: 0.05em;
+  }
+  .search-wrap {
+    flex: 1;
+    min-width: 220px;
+    display: flex;
+    border: 2px solid var(--navy);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .search-wrap input {
+    flex: 1;
+    border: none;
+    padding: 12px 16px;
+    font-size: 14.5px;
+    font-family: 'Noto Sans KR';
+  }
+  .search-wrap input:focus { outline: none; }
+  .search-wrap button {
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    padding: 0 20px;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  .header-icons {
+    display: flex;
+    gap: 26px;
+    align-items: center;
+  }
+  .header-icons a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 11.5px;
+    color: var(--text-soft);
+    position: relative;
+  }
+  .header-icons .icon { font-size: 20px; }
+  .cart-count {
+    position: absolute;
+    top: -4px; right: -10px;
+    background: var(--orange);
+    color: white;
+    font-size: 10px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* === 메인 네비 === */
+  nav.main-nav {
+    background: var(--navy-light);
+  }
+  .nav-inner {
+    display: flex;
+    padding: 0 4vw;
+    overflow-x: auto;
+  }
+  .nav-inner a {
+    color: var(--white);
+    padding: 15px 20px;
+    font-size: 14.5px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .nav-inner a:hover { background: rgba(255,255,255,0.1); color: var(--yellow); }
+
+  /* === 히어로 배너 === */
+  .hero-banner {
+    background: linear-gradient(120deg, var(--navy) 0%, #0D1F3C 100%);
+    color: white;
+    padding: 56px 4vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .hero-text .eyebrow {
+    display: inline-block;
+    background: var(--orange);
+    padding: 5px 12px;
+    font-size: 12.5px;
+    font-weight: 700;
+    border-radius: 3px;
+    margin-bottom: 16px;
+  }
+  .hero-text h1 {
+    font-size: clamp(24px, 3.2vw, 34px);
+    font-weight: 900;
+    line-height: 1.4;
+  }
+  .hero-text p { margin-top: 12px; color: #B9C4D6; font-size: 14.5px; }
+  .hero-badges {
+    display: flex;
+    gap: 16px;
+  }
+  .hero-badge {
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    border-radius: 8px;
+    padding: 18px 22px;
+    text-align: center;
+    min-width: 110px;
+  }
+  .hero-badge b { display: block; font-size: 22px; color: var(--yellow); font-weight: 900; }
+  .hero-badge span { font-size: 12px; color: #C7D0DE; }
+
+  /* === 메인 레이아웃 === */
+  .layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 24px;
+    padding: 30px 4vw 70px;
+    align-items: start;
+  }
+
+  /* === 사이드바 카테고리 트리 === */
+  .sidebar {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .sidebar-title {
+    background: var(--navy);
+    color: white;
+    padding: 14px 18px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  details.cat-group {
+    border-bottom: 1px solid var(--line);
+  }
+  details.cat-group summary {
+    padding: 13px 18px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+  }
+  details.cat-group summary::-webkit-details-marker { display: none; }
+  details.cat-group summary::after {
+    content: "+";
+    color: var(--text-soft);
+    font-weight: 400;
+  }
+  details.cat-group[open] summary::after { content: "−"; }
+  details.cat-group summary:hover { color: var(--orange); }
+  .cat-sub {
+    padding: 4px 18px 12px 30px;
+    display: grid;
+    gap: 8px;
+  }
+  .cat-sub a {
+    font-size: 13px;
+    color: var(--text-soft);
+  }
+  .cat-sub a:hover { color: var(--orange); text-decoration: underline; }
+
+  .sidebar-cta {
+    padding: 20px 18px;
+    background: #EFF3F8;
+    text-align: center;
+  }
+  .sidebar-cta p { font-size: 12.5px; color: var(--text-soft); margin-bottom: 10px; }
+  .sidebar-cta a {
+    display: block;
+    background: var(--orange);
+    color: white;
+    padding: 11px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 13.5px;
+  }
+
+  /* === 메인 컨텐츠 === */
+  .breadcrumb {
+    font-size: 13px;
+    color: var(--text-soft);
+    margin-bottom: 14px;
+  }
+  .breadcrumb b { color: var(--navy); }
+
+  .content-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--navy);
+    padding-bottom: 14px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .content-head h2 { font-size: 22px; font-weight: 900; }
+  .content-head .count { font-size: 13.5px; color: var(--text-soft); }
+  .sort-links { display: flex; gap: 12px; font-size: 13px; color: var(--text-soft); }
+  .sort-links a:hover { color: var(--orange); }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 20px;
+  }
+  .product-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+    position: relative;
+  }
+  .product-card:hover { box-shadow: 0 8px 20px rgba(22,48,90,0.12); transform: translateY(-3px); }
+  .badge {
+    position: absolute;
+    top: 10px; left: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 9px;
+    border-radius: 3px;
+    color: white;
+    z-index: 2;
+  }
+  .badge.new { background: var(--orange); }
+  .badge.sale { background: var(--navy); }
+  .product-thumb {
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(135deg, #EFF3F8, #E1E7EF);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 44px;
+    overflow: hidden;
+  }
+  .product-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #FFFFFF;
+  }
+  .product-info { padding: 16px; }
+  .product-info h3 { font-size: 14.5px; font-weight: 700; margin-bottom: 10px; min-height: 40px; }
+  .spec-line {
+    display: flex;
+    font-size: 12px;
+    color: var(--text-soft);
+    padding: 3px 0;
+    border-top: 1px dashed var(--line);
+  }
+  .spec-line:first-of-type { border-top: none; }
+  .spec-line b { width: 52px; color: var(--text); font-weight: 500; flex-shrink: 0; }
+  .product-actions {
+    display: flex;
+    gap: 6px;
+    margin-top: 12px;
+  }
+  .product-actions button, .product-actions a {
+    flex: 1;
+    padding: 8px 0;
+    font-size: 12.5px;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+    background: var(--white);
+    cursor: pointer;
+    font-family: 'Noto Sans KR';
+  }
+  .product-actions .primary {
+    background: var(--navy);
+    color: white;
+    border-color: var(--navy);
+  }
+  .product-actions .primary:hover { background: var(--orange); border-color: var(--orange); }
+
+  /* === 카테고리 아이콘 탭 (매너티 참고) === */
+  .cat-tab-row {
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    padding: 22px 4vw;
+  }
+  .cat-tab-row h3 {
+    font-size: 13px;
+    color: var(--text-soft);
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+  }
+  .cat-tab-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .cat-tab {
+    flex-shrink: 0;
+    width: 92px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .cat-tab-icon {
+    width: 92px;
+    height: 92px;
+    border-radius: 8px;
+    border: 2px solid var(--line);
+    background: #F4F5F7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-bottom: 8px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .cat-tab.active .cat-tab-icon {
+    border-color: var(--navy);
+    background: #EFF3F8;
+  }
+  .cat-tab span {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-soft);
+  }
+  .cat-tab.active span { color: var(--navy); }
+
+  /* === 하위 카테고리 미리보기 그리드 (완성기업 참고) === */
+  .subcat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 14px;
+    margin-bottom: 30px;
+  }
+  .subcat-tile {
+    text-align: center;
+  }
+  .subcat-tile-icon {
+    aspect-ratio: 1/1;
+    background: #F4F5F7;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin-bottom: 8px;
+    transition: box-shadow 0.2s;
+  }
+  .subcat-tile:hover .subcat-tile-icon { box-shadow: 0 4px 12px rgba(22,48,90,0.12); border-color: var(--orange); }
+  .subcat-tile span { font-size: 12px; color: var(--text-soft); font-weight: 500; }
+
+  /* === 랭킹 배지 / 재고 태그 / 찜 버튼 === */
+  .rank-badge {
+    position: absolute;
+    top: 10px; left: 10px;
+    background: var(--navy);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 9px 4px 7px;
+    border-radius: 3px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .rank-badge b { font-size: 13px; }
+  .wish-btn {
+    position: absolute;
+    top: 8px; right: 8px;
+    width: 28px; height: 28px;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 2;
+    color: var(--text-soft);
+  }
+  .wish-btn:hover { color: var(--orange); border-color: var(--orange); }
+  .stock-tag {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-top: 6px;
+  }
+  .stock-tag.ok { background: #E7F4EC; color: #1E8449; }
+  .stock-tag.hit { background: #FFF1E6; color: var(--orange); margin-left: 4px; }
+
+  .trust-strip {
+    background: var(--white);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 30px 4vw;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    text-align: center;
+  }
+  .trust-item b { display: block; font-size: 15px; color: var(--navy); }
+  .trust-item span { font-size: 12.5px; color: var(--text-soft); }
+
+  /* === 푸터 === */
+  footer {
+    background: #1A1D22;
+    color: #9AA0AA;
+    padding: 40px 4vw;
+    font-size: 13px;
+  }
+  footer .foot-logo { font-size: 18px; font-weight: 900; color: white; margin-bottom: 10px; }
+  footer .foot-logo span { color: var(--orange); }
+  footer p { margin: 3px 0; }
+  footer .foot-bottom {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #33373E;
+    font-size: 12px;
+    color: #6B7078;
+  }
+
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; }
+    .nav-inner { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="util-bar">
+  <div class="cs">CS센터 &nbsp;<b>032-710-1393</b> &nbsp;| &nbsp;평일 09:00~18:00</div>
+  <div>
+    <a href="#">회원가입</a><a href="#">로그인</a><a href="#">마이페이지</a><a href="#">견적함</a>
+  </div>
+</div>
+
+<header>
+  <div class="logo">KM<span>비즈</span><small>건설현장 안전용품 전문몰</small></div>
+  <div class="search-wrap">
+    <input type="text" placeholder="찾으시는 안전용품을 검색해보세요">
+    <button>검색</button>
+  </div>
+  <div class="header-icons">
+    <a href="#"><span class="icon">♡</span>찜목록</a>
+    <a href="#" style="position:relative;"><span class="icon">🛒</span>장바구니<span class="cart-count">3</span></a>
+    <a href="#"><span class="icon">☰</span>견적요청</a>
+  </div>
+</header>
+
+<nav class="main-nav">
+  <div class="nav-inner">
+    <a href="#">안전모/안전화</a>
+    <a href="#">안전벨트/보호구</a>
+    <a href="#">표지판/방호펜스</a>
+    <a href="#">경광/신호용품</a>
+    <a href="#">도로안전용품</a>
+    <a href="#">소방/방재용품</a>
+    <a href="#">건설현장용품</a>
+    <a href="#">제작물/맞춤사인</a>
+    <a href="#">신상품</a>
+  </div>
+</nav>
+
+<section class="hero-banner">
+  <div class="hero-text">
+    <span class="eyebrow">SUPPLY PARTNER</span>
+    <h1>현장이 믿는 안전,<br>㈜케이엠산업이 공급합니다</h1>
+    <p>KC 인증 확인 · 최저가 비교 · 신속 납품 — 발주부터 검수까지 책임집니다.</p>
+  </div>
+  <div class="hero-badges">
+    <div class="hero-badge"><b>200+</b><span>취급 품목</span></div>
+    <div class="hero-badge"><b>500+</b><span>납품 현장</span></div>
+    <div class="hero-badge"><b>15년</b><span>업계 경력</span></div>
+  </div>
+</section>
+
+<div class="cat-tab-row">
+  <h3>카테고리 바로가기</h3>
+  <div class="cat-tab-scroll">
+    <div class="cat-tab active"><div class="cat-tab-icon"><img src="https://www.ws7.co.kr/data/goods_category/1641357466616281ef74cbc084a9d74dec04fa9c80.png" style="width:44px;height:44px;object-fit:contain;"></div><span>안전모/안전화</span></div>
+    <div class="cat-tab"><div class="cat-tab-icon"><img src="https://www.ws7.co.kr/data/goods_category/1641357466616281ef74cbc084a9d74dec04fa9c80.png" style="width:44px;height:44px;object-fit:contain;"></div><span>안전벨트</span></div>
+    <div class="cat-tab"><div class="cat-tab-icon"><img src="https://www.ws7.co.kr/data/goods_category/1641357495db303d5d5516e75090cbab64662b10d8.png" style="width:44px;height:44px;object-fit:contain;"></div><span>표지판/펜스</span></div>
+    <div class="cat-tab"><div class="cat-tab-icon"><img src="https://www.ws7.co.kr/data/goods_category/16412740916f1f9885e2283111ec237945a0d32da0.png" style="width:44px;height:44px;object-fit:contain;"></div><span>경광용품</span></div>
+    <div class="cat-tab"><div class="cat-tab-icon"><img src="https://www.ws7.co.kr/data/goods_category/16412740916f1f9885e2283111ec237945a0d32da0.png" style="width:44px;height:44px;object-fit:contain;"></div><span>도로안전</span></div>
+    <div class="cat-tab"><div class="cat-tab-icon"><img src="https://www.ws7.co.kr/data/goods_category/1641357485263f8198ab136ce73e1a6055af6a7946.png" style="width:44px;height:44px;object-fit:contain;"></div><span>소방용품</span></div>
+    <div class="cat-tab"><div class="cat-tab-icon"><img src="https://www.ws7.co.kr/data/goods_category/1641357442d70fbd81a32c729fd91221c20dabede6.png" style="width:44px;height:44px;object-fit:contain;"></div><span>건설현장</span></div>
+    <div class="cat-tab"><div class="cat-tab-icon"><img src="https://www.ws7.co.kr/data/goods_category/1641357495db303d5d5516e75090cbab64662b10d8.png" style="width:44px;height:44px;object-fit:contain;"></div><span>맞춤제작</span></div>
+  </div>
+</div>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-title">전체 카테고리</div>
+
+    <details class="cat-group" open>
+      <summary>⛑️ 안전모/안전화</summary>
+      <div class="cat-sub">
+        <a href="#">1010. 안전모</a>
+        <a href="#">1015. 안전모 액세서리/걸이대</a>
+        <a href="#">1020. 안전화</a>
+        <a href="#">1025. 방한안전화</a>
+        <a href="#">1030. 안전장화/패션장화</a>
+        <a href="#">1035. 보안경/고글</a>
+        <a href="#">1040. 용접면/보안면</a>
+        <a href="#">1045. 방진마스크</a>
+        <a href="#">1050. 귀마개/청력보호구</a>
+      </div>
+    </details>
+
+    <details class="cat-group">
+      <summary>🦺 안전벨트/보호구</summary>
+      <div class="cat-sub">
+        <a href="#">1510. 안전벨트/그네</a>
+        <a href="#">1515. 안전블럭</a>
+        <a href="#">1520. 안전조끼</a>
+        <a href="#">1525. 스마트조끼</a>
+        <a href="#">1530. 각반/보호대</a>
+        <a href="#">1535. 장갑/특수장갑</a>
+        <a href="#">1540. 일회용 작업복/우의</a>
+      </div>
+    </details>
+
+    <details class="cat-group">
+      <summary>🚧 표지판/방호펜스</summary>
+      <div class="cat-sub">
+        <a href="#">2010. 안내표지판</a>
+        <a href="#">2015. 경고표지판</a>
+        <a href="#">2020. 방호휀스</a>
+        <a href="#">2025. 라바콘/슈퍼콘</a>
+        <a href="#">2030. 안전바리케이드</a>
+        <a href="#">2035. 볼라드</a>
+        <a href="#">2040. 게시판/현황판</a>
+      </div>
+    </details>
+
+    <details class="cat-group">
+      <summary>💡 경광/신호용품</summary>
+      <div class="cat-sub">
+        <a href="#">2510. 경광등</a>
+        <a href="#">2515. 경광봉/신호봉</a>
+        <a href="#">2520. 반사테이프/야광테이프</a>
+        <a href="#">2525. 카스토퍼/코너보호대</a>
+        <a href="#">2530. 반사경</a>
+      </div>
+    </details>
+
+    <details class="cat-group">
+      <summary>🛣️ 도로안전용품</summary>
+      <div class="cat-sub">
+        <a href="#">3010. 과속방지턱</a>
+        <a href="#">3015. 차선규제봉</a>
+        <a href="#">3020. 도로표지병/델리네이터</a>
+        <a href="#">3025. 차량진입판</a>
+        <a href="#">3030. 전선보호대/전선거치대</a>
+      </div>
+    </details>
+
+    <details class="cat-group">
+      <summary>🧯 소방/방재용품</summary>
+      <div class="cat-sub">
+        <a href="#">3510. 소화기/소화기함</a>
+        <a href="#">3515. 완강기/피난사다리</a>
+        <a href="#">3520. 불티방지포/소방담요</a>
+        <a href="#">3525. 구급용품/구급함</a>
+        <a href="#">3530. 화재감시/개인진화장비</a>
+      </div>
+    </details>
+
+    <details class="cat-group">
+      <summary>🏗️ 건설현장용품</summary>
+      <div class="cat-sub">
+        <a href="#">4010. 안전난간/방호펜스</a>
+        <a href="#">4015. 추락방지망/안전망</a>
+        <a href="#">4020. 개구부덮개/맨홀사다리</a>
+        <a href="#">4025. 실족방지망/발끝막이판</a>
+        <a href="#">4030. PP로프/안전로프</a>
+        <a href="#">4035. 근로자휴게실/보관함</a>
+      </div>
+    </details>
+
+    <details class="cat-group">
+      <summary>📋 제작물/맞춤사인</summary>
+      <div class="cat-sub">
+        <a href="#">4510. 현수막/배너</a>
+        <a href="#">4515. 안전스티커</a>
+        <a href="#">4520. 맞춤 표지물/사인</a>
+        <a href="#">4525. 명패/현황판</a>
+      </div>
+    </details>
+
+    <div class="sidebar-cta">
+      <p>필요 품목이 없으신가요?<br>담당자가 직접 찾아드립니다.</p>
+      <a href="#">견적 문의하기</a>
+    </div>
+  </aside>
+
+  <main>
+    <div class="breadcrumb">HOME &nbsp;›&nbsp; 안전모/안전화 &nbsp;›&nbsp; <b>전체상품</b></div>
+
+    <div class="subcat-grid">
+      <div class="subcat-tile"><div class="subcat-tile-icon">⛑️</div><span>안전모</span></div>
+      <div class="subcat-tile"><div class="subcat-tile-icon">🥾</div><span>안전화</span></div>
+      <div class="subcat-tile"><div class="subcat-tile-icon">🕶️</div><span>보안경/고글</span></div>
+      <div class="subcat-tile"><div class="subcat-tile-icon">😷</div><span>방진마스크</span></div>
+    </div>
+
+    <div class="content-head">
+      <div>
+        <h2>안전모/안전화</h2>
+        <div class="count">총 8개 상품이 있습니다</div>
+      </div>
+      <div class="sort-links">
+        <a href="#">기본순</a> | <a href="#">코드순</a> | <a href="#">이름순</a> | <a href="#">신상품순</a>
+      </div>
+    </div>
+
+    <div class="product-grid">
+
+      <div class="product-card">
+        <span class="rank-badge">BEST <b>1</b></span>
+        <button class="wish-btn">♡</button>
+        <div class="product-thumb"><img src="https://ecimg.cafe24img.com/pg1398b62551189053/manatee4155/web/product/medium/20250220/08578764019a966d0d52b63c8ea1edad.jpg" alt="안전모"></div>
+        <div class="product-info">
+          <h3>ABS 산업용 안전모 (백색)</h3>
+          <div class="spec-line"><b>코드</b>KM-HM-001</div>
+          <div class="spec-line"><b>규격</b>KC 인증</div>
+          <div class="spec-line"><b>원산지</b>국내</div>
+          <span class="stock-tag ok">재고보유</span><span class="stock-tag hit">HIT</span>
+          <div class="product-actions">
+            <a href="#">상세보기</a>
+            <button class="primary">견적문의</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <span class="rank-badge">BEST <b>2</b></span>
+        <button class="wish-btn">♡</button>
+        <div class="product-thumb"><img src="https://ecimg.cafe24img.com/pg1398b62551189053/manatee4155/web/upload/han/images/Wear%20or%20gear/KS-606D/00.png" alt="안전화"></div>
+        <div class="product-info">
+          <h3>절연 안전화 (6인치)</h3>
+          <div class="spec-line"><b>코드</b>KM-SH-014</div>
+          <div class="spec-line"><b>규격</b>KC 인증</div>
+          <div class="spec-line"><b>원산지</b>국내</div>
+          <span class="stock-tag ok">재고보유</span>
+          <div class="product-actions">
+            <a href="#">상세보기</a>
+            <button class="primary">견적문의</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <span class="badge sale">특가</span>
+        <button class="wish-btn">♡</button>
+        <div class="product-thumb"><img src="https://ecimg.cafe24img.com/pg1398b62551189053/manatee4155/web/product/medium/20250311/f003980108b9eba6b71f2d4aac454b72.jpg" alt="보안경"></div>
+        <div class="product-info">
+          <h3>산업용 보안경 (김서림방지)</h3>
+          <div class="spec-line"><b>코드</b>KM-GG-007</div>
+          <div class="spec-line"><b>규격</b>KS 표준</div>
+          <div class="spec-line"><b>원산지</b>국내</div>
+          <span class="stock-tag ok">재고보유</span>
+          <div class="product-actions">
+            <a href="#">상세보기</a>
+            <button class="primary">견적문의</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <button class="wish-btn">♡</button>
+        <div class="product-thumb"><img src="https://ecimg.cafe24img.com/pg1398b62551189053/manatee4155/web/product/medium/20241024/f612dbe7108e5c4af5592b2b8c02bd60.png" alt="방진마스크"></div>
+        <div class="product-info">
+          <h3>방진마스크 2급 (10매입)</h3>
+          <div class="spec-line"><b>코드</b>KM-MK-022</div>
+          <div class="spec-line"><b>규격</b>KC 인증</div>
+          <div class="spec-line"><b>원산지</b>국내</div>
+          <span class="stock-tag ok">재고보유</span>
+          <div class="product-actions">
+            <a href="#">상세보기</a>
+            <button class="primary">견적문의</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <span class="badge new">NEW</span>
+        <button class="wish-btn">♡</button>
+        <div class="product-thumb">⛑️</div>
+        <div class="product-info">
+          <h3>통풍형 안전모 (황색)</h3>
+          <div class="spec-line"><b>코드</b>KM-HM-003</div>
+          <div class="spec-line"><b>규격</b>KC 인증</div>
+          <div class="spec-line"><b>원산지</b>국내</div>
+          <span class="stock-tag ok">재고보유</span>
+          <div class="product-actions">
+            <a href="#">상세보기</a>
+            <button class="primary">견적문의</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <button class="wish-btn">♡</button>
+        <div class="product-thumb"><img src="https://ecimg.cafe24img.com/pg1398b62551189053/manatee4155/web/upload/han/images/Wear%20or%20gear/XM-5D%28%EC%B9%B4%ED%82%A4%29/00.png" alt="고소작업용 안전화"></div>
+        <div class="product-info">
+          <h3>고소작업용 안전화</h3>
+          <div class="spec-line"><b>코드</b>KM-SH-019</div>
+          <div class="spec-line"><b>규격</b>KC 인증</div>
+          <div class="spec-line"><b>원산지</b>국내</div>
+          <span class="stock-tag ok">재고보유</span>
+          <div class="product-actions">
+            <a href="#">상세보기</a>
+            <button class="primary">견적문의</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <button class="wish-btn">♡</button>
+        <div class="product-thumb">🧤</div>
+        <div class="product-info">
+          <h3>미끄럼방지 코팅장갑</h3>
+          <div class="spec-line"><b>코드</b>KM-GL-031</div>
+          <div class="spec-line"><b>규격</b>일반</div>
+          <div class="spec-line"><b>원산지</b>국내</div>
+          <span class="stock-tag ok">재고보유</span>
+          <div class="product-actions">
+            <a href="#">상세보기</a>
+            <button class="primary">견적문의</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <span class="badge sale">특가</span>
+        <button class="wish-btn">♡</button>
+        <div class="product-thumb">⛑️</div>
+        <div class="product-info">
+          <h3>ABS 안전모 (청색)</h3>
+          <div class="spec-line"><b>코드</b>KM-HM-002</div>
+          <div class="spec-line"><b>규격</b>KC 인증</div>
+          <div class="spec-line"><b>원산지</b>국내</div>
+          <span class="stock-tag ok">재고보유</span>
+          <div class="product-actions">
+            <a href="#">상세보기</a>
+            <button class="primary">견적문의</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<div class="trust-strip">
+  <div class="trust-item"><b>KC 인증 확인</b><span>전 품목 인증 여부 검수</span></div>
+  <div class="trust-item"><b>최저가 비교</b><span>시장 조사 기반 합리적 단가</span></div>
+  <div class="trust-item"><b>신속 납품</b><span>현장 일정 맞춤 배송</span></div>
+  <div class="trust-item"><b>맞춤 제작</b><span>현장별 표지물 제작 가능</span></div>
+</div>
+
+<footer>
+  <div class="foot-logo">KM<span>비즈</span></div>
+  <p>㈜케이엠산업</p>
+  <p>인천광역시 동구 방축로 83번길 23 인천산업용품유통단지 2단지 11동 310호</p>
+  <p>Tel. 032-710-1393 &nbsp; | &nbsp; Fax. 032-565-1390 &nbsp; | &nbsp; E-Mail. kmbiz2100@naver.com</p>
+  <p>Blog. blog.naver.com/kmbiz2100</p>
+  <div class="foot-bottom">© 2026 KMBIZ. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
