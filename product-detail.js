@@ -56,6 +56,21 @@ function relatedBadgeHtml(p) {
   const tags = document.getElementById('detailTags');
   tags.hidden = true;
 
+  const detailInfoSection = document.getElementById('detailInfoSection');
+  const detailInfoGrid = document.getElementById('detailInfoGrid');
+  if (product.details && product.details.length && detailInfoSection && detailInfoGrid) {
+    detailInfoGrid.innerHTML = product.details.map((d) => `
+      <div class="detail-feature-card">
+        <div class="detail-feature-mark"></div>
+        <div>
+          <h3>${d.title}</h3>
+          <p>${d.desc}</p>
+        </div>
+      </div>
+    `).join('');
+    detailInfoSection.hidden = false;
+  }
+
   document.getElementById('roleQualityText').textContent =
     `${product.spec}을 획득한 제품으로, 산업 현장에서 요구하는 안전 기준을 충족합니다.`;
   document.getElementById('roleQualityTags').innerHTML =

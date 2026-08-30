@@ -1323,6 +1323,51 @@ a {
   background: var(--color-bg-alt);
 }
 
+/* Product feature details (product-detail.html — 일부 상품만 제공) */
+.detail-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 32px;
+}
+
+.detail-feature-card {
+  display: flex;
+  gap: 16px;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+.detail-feature-mark {
+  flex-shrink: 0;
+  width: 6px;
+  border-radius: 999px;
+  background: var(--color-orange);
+}
+
+.detail-feature-card h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin: 0 0 8px;
+  word-break: keep-all;
+}
+
+.detail-feature-card p {
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin: 0;
+  word-break: keep-all;
+}
+
+@media (max-width: 720px) {
+  .detail-feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Company overview */
 .overview-grid {
   display: grid;
