@@ -67,11 +67,17 @@ cart.html / cart.js의 장바구니 인프라는 아직 코드에 남아있지�
 
 사용자가 보내준 실제 사진 2장을 히어로 배경으로 사용 중 (`hero-construction.jpg`: 건설현장 전경,
 `hero-safety-gear.jpg`: 안전용품 플랫레이). `index.html` 홈 히어로 = 건설현장 사진,
-`company-profile.html` 회사소개 히어로 = 안전용품 사진으로 매칭함. 구조는
-`.hero-photo`(사진, background-image) 위에 반투명해진 `.hero-bg`(기존 그라디언트, 텍스트 가독성용
-스크림 역할)를 겹치는 방식 — `.hero-photo`가 없는 다른 `.hero` 섹션은 `:not(:has(.hero-photo))`로
-기존 불투명 그라디언트를 그대로 유지하니 건드리지 말 것. 사진을 바꾸려면 같은 파일명으로
-교체하거나 `style.css`의 `.hero-photo-construction`/`.hero-photo-safety` 배경 이미지 경로만 바꾸면 됨.
+`company-profile.html` 회사소개 히어로 = 안전용품 사진으로 매칭함. 구조는 `.hero-photo`(사진,
+background-image) 위에 `.hero-bg`를 겹치는 방식 — 사진이 없는 다른 `.hero` 섹션은 원래의 불투명
+블러 그라디언트를 그대로 쓰고, `.hero:has(.hero-photo) .hero-bg`가 그 경우만 override함.
+
+**사진 선명도 — 절대 다시 블러/진하게 넣지 말 것.** 처음엔 남색 그라디언트를 진하게(0.86~0.93
+불투명도) + blur(40px)로 깔았다가 사용자가 "사진이 너무 흐리다, 선명하게 나왔으면 좋겠다"고
+피드백. 그래서 사진 히어로는 blur 없이, 위/아래만 살짝 어둡게(0.5→0.18→0.3→0.68, 세로
+그라디언트)로 바꾸고, 텍스트는 대신 `text-shadow`로 가독성을 확보하는 방식으로 수정함. 앞으로
+히어로 사진 관련 요청이 오면 이 가벼운 스크림 방식을 유지하고, 사진 위에 진한 색을 다시 덮지
+말 것. 사진을 바꾸려면 같은 파일명으로 교체하거나 `style.css`의
+`.hero-photo-construction`/`.hero-photo-safety` 배경 이미지 경로만 바꾸면 됨.
 
 ## 미해결 항목 (다음 세션에서 이어갈 것)
 
