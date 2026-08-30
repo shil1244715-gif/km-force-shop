@@ -44,7 +44,7 @@ function photoHtml(p) {
   }
 
   const tags = document.getElementById('detailTags');
-  tags.innerHTML = '<span class="tag tag-stock">재고보유</span>' + (product.hit ? '<span class="tag tag-hit">HIT</span>' : '');
+  tags.hidden = true;
 
   document.getElementById('roleQualityText').textContent =
     `${product.spec}을 획득한 제품으로, 산업 현장에서 요구하는 안전 기준을 충족합니다.`;
@@ -66,10 +66,6 @@ function photoHtml(p) {
           <div class="spec-row"><span>코드</span><span>${p.id}</span></div>
           <div class="spec-row"><span>규격</span><span>${p.spec}</span></div>
           <div class="spec-row"><span>원산지</span><span>${p.origin}</span></div>
-        </div>
-        <div class="product-tags">
-          <span class="tag tag-stock">재고보유</span>
-          ${p.hit ? '<span class="tag tag-hit">HIT</span>' : ''}
         </div>
         <div class="product-card-actions">
           <a href="product-detail.html?id=${p.id}" class="btn-detail">상세보기</a>

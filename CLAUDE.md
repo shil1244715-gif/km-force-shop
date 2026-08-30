@@ -99,6 +99,24 @@ crossfade, `.hero-photo`는 기본 opacity:0, `.is-active`만 1). `company-profi
 `products-data.js`의 `badge` 필드만 채우면 전 페이지에 자동 반영됨(단, index.html 등 4개 파일의
 하드코딩된 카드는 별도로 다시 넣어야 함 — 이 카드들은 products-data.js를 안 읽는 정적 마크업).
 
+**"재고보유" / "HIT" 태그도 사용자 요청으로 전부 제거함** (특가/BEST 지운 직후 바로 이어서 요청).
+`.tag.tag-stock`("재고보유")과 `.tag.tag-hit`("HIT") 두 개 다 없앰 — index.html /
+products-construction.html / products-fire.html / products-personal.html의 정적 카드,
+search.js의 renderSearchCard(), product-detail.js의 상단 태그(`#detailTags`, 이제
+`hidden=true`로 완전히 숨김)와 "함께 찾는 상품" 관련상품 카드까지 전부. 결과적으로 비어버린
+`.product-tags` 컨테이너 div는 통째로 지워서 빈 여백이 안 남게 정리함. 앞으로 재고/HIT 표시를
+다시 넣어달라는 요청이 오면 이 4곳(정적 HTML 4개 + search.js + product-detail.js 2군데)을 전부
+같이 고쳐야 함 — 한 곳만 고치면 나머지에서 다시 나타남.
+
+## 상세보기 링크 무결성
+
+"상세보기를 누르면 실제 상세페이지가 나와야 한다"는 사용자 요청에 따라, 사이트 전체의
+`product-detail.html?id=...` 링크와 `products-data.js`의 `PRODUCTS` id들을 전수 대조 검증함
+(정적 HTML의 href와 데이터 배열의 id를 diff) — 현재는 32개 상품 전부 깨진 링크 없이 정상 연결됨.
+앞으로 새 상품을 추가할 때는 반드시 이 방식으로 (1) products-data.js에 id를 추가하고 (2) 그 id를
+참조하는 모든 정적 카드의 href도 같은 id로 맞춰야 함 — products-data.js에만 추가하고 정적 카드의
+href를 빠뜨리면 "상세보기"가 다른 상품 페이지로 잘못 연결되거나 404처럼 보일 수 있음.
+
 ## 실제 공급사 카탈로그 상품 등록 (K2/블랙야크/장화)
 
 사용자가 K2 안전화(57종), 블랙야크 YAK-501D, 장화 10종(대신/에스큐브/빅스탑/파인웰)이 담긴 PPT

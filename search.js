@@ -33,10 +33,6 @@ function renderSearchCard(p) {
         <div class="spec-row"><span>규격</span><span>${p.spec}</span></div>
         <div class="spec-row"><span>원산지</span><span>${p.origin}</span></div>
       </div>
-      <div class="product-tags">
-        <span class="tag tag-stock">재고보유</span>
-        ${p.hit ? '<span class="tag tag-hit">HIT</span>' : ''}
-      </div>
       <div class="product-card-actions">
         <a href="product-detail.html?id=${p.id}" class="btn-detail">상세보기</a>
         <a href="index.html#contact" class="btn-quote">견적문의</a>
