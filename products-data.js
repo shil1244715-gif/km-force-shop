@@ -12,18 +12,27 @@ const PHOTOS = {
   daeshinBoots: "product-daeshin-boots.jpg",
   scubeInsulatedBoots: "product-scube-insulated-boots.jpg",
   vicstopChemicalBoots: "product-vicstop-chemical-boots.jpg",
+  // 사용자가 보내준 안전용품 모음 사진(현장 사진 속 실제 장비)에서 품목별로 잘라낸 임시 사진.
+  // 나중에 각 상품 전용 사진을 받으면 아래 값만 교체하면 됨 (2026-08-30, CLAUDE.md 참고)
+  helmetWhite: "product-helmet-white.jpg",
+  helmetYellow: "product-helmet-yellow.jpg",
+  safetyBoots: "product-safety-boots.jpg",
+  safetyVest: "product-safety-vest.jpg",
+  workGloves: "product-work-gloves.jpg",
+  safetyGoggles: "product-safety-goggles.jpg",
+  dustMask: "product-dust-mask.jpg",
 };
 
 // Shared product catalog — used by product listing cards and the product detail page.
 const PRODUCTS = [
   // 건설안전용품
-  { id: "KM-HM-001", name: "ABS 산업용 안전모 (백색)", price: 12000, cat: "construction", catLabel: "건설안전용품", catPage: "products-construction.html", spec: "KC 인증", origin: "국내", badge: "", hit: true, photo: null,
+  { id: "KM-HM-001", name: "ABS 산업용 안전모 (백색)", price: 12000, cat: "construction", catLabel: "건설안전용품", catPage: "products-construction.html", spec: "KC 인증", origin: "국내", badge: "", hit: true, photo: PHOTOS.helmetWhite,
     desc: "건설 현장 필수 보호구인 ABS 소재 안전모입니다. 충격 흡수성이 뛰어나며 장시간 착용해도 무게 부담이 적습니다." },
-  { id: "KM-HM-003", name: "통풍형 안전모 (황색)", price: 15000, cat: "construction", catLabel: "건설안전용품", catPage: "products-construction.html", spec: "KC 인증", origin: "국내", badge: "NEW", hit: false, photo: null,
+  { id: "KM-HM-003", name: "통풍형 안전모 (황색)", price: 15000, cat: "construction", catLabel: "건설안전용품", catPage: "products-construction.html", spec: "KC 인증", origin: "국내", badge: "NEW", hit: false, photo: PHOTOS.helmetYellow,
     desc: "통풍구가 있어 여름철 현장에서도 쾌적하게 착용할 수 있는 안전모입니다." },
   { id: "KM-SB-005", name: "안전대 (2줄 걸이)", price: 45000, cat: "construction", catLabel: "건설안전용품", catPage: "products-construction.html", spec: "KS 표준", origin: "국내", badge: "", hit: false, photo: null,
     desc: "고소 작업 시 추락을 방지하는 2줄 걸이 안전대로, 이동 중에도 상시 체결 상태를 유지할 수 있습니다." },
-  { id: "KM-SH-014", name: "절연 안전화 (6인치)", price: 68000, cat: "construction", catLabel: "건설안전용품", catPage: "products-construction.html", spec: "KC 인증", origin: "국내", badge: "", hit: false, photo: null,
+  { id: "KM-SH-014", name: "절연 안전화 (6인치)", price: 68000, cat: "construction", catLabel: "건설안전용품", catPage: "products-construction.html", spec: "KC 인증", origin: "국내", badge: "", hit: false, photo: PHOTOS.safetyBoots,
     desc: "전기 작업 현장에 적합한 절연 기능을 갖춘 6인치 안전화입니다." },
   { id: "KM-NT-002", name: "추락방지망 (그물망)", price: 120000, cat: "construction", catLabel: "건설안전용품", catPage: "products-construction.html", spec: "KS 표준", origin: "국내", badge: "", hit: false, photo: null,
     desc: "고소 작업 구간에 설치하는 추락방지망으로, 낙하물 및 추락 사고를 예방합니다." },
@@ -51,9 +60,9 @@ const PRODUCTS = [
     desc: "화학 약품 취급 현장에 적합한 빅스탑 내화학 장화입니다." },
 
   // 개인안전용품
-  { id: "KM-MK-022", name: "방진마스크 2급 (10매입)", price: 9900, cat: "personal", catLabel: "개인안전용품", catPage: "products-personal.html", spec: "KF80", origin: "국내", badge: "", hit: false, photo: null,
+  { id: "KM-MK-022", name: "방진마스크 2급 (10매입)", price: 9900, cat: "personal", catLabel: "개인안전용품", catPage: "products-personal.html", spec: "KF80", origin: "국내", badge: "", hit: false, photo: PHOTOS.dustMask,
     desc: "분진이 많은 작업 환경에서 호흡기를 보호하는 2급 방진마스크 10매입 제품입니다." },
-  { id: "KM-GG-007", name: "산업용 보안경 (김서림방지)", price: 7500, cat: "personal", catLabel: "개인안전용품", catPage: "products-personal.html", spec: "KC 인증", origin: "국내", badge: "", hit: false, photo: null,
+  { id: "KM-GG-007", name: "산업용 보안경 (김서림방지)", price: 7500, cat: "personal", catLabel: "개인안전용품", catPage: "products-personal.html", spec: "KC 인증", origin: "국내", badge: "", hit: false, photo: PHOTOS.safetyGoggles,
     desc: "김서림 방지 코팅이 적용되어 장시간 착용해도 시야가 흐려지지 않는 보안경입니다." },
   { id: "KM-GL-015", name: "내화학 안전장갑", price: 6800, cat: "personal", catLabel: "개인안전용품", catPage: "products-personal.html", spec: "CE 인증", origin: "수입", badge: "", hit: false, photo: null,
     desc: "화학 약품 취급 작업에 적합한 내화학성 소재의 안전장갑입니다." },
@@ -61,11 +70,11 @@ const PRODUCTS = [
     desc: "동절기 실외 현장 작업에 적합한 보온성 높은 방한 작업복입니다." },
   { id: "KM-EP-008", name: "귀마개 (소음차단)", price: 3500, cat: "personal", catLabel: "개인안전용품", catPage: "products-personal.html", spec: "KC 인증", origin: "국내", badge: "NEW", hit: false, photo: null,
     desc: "소음이 심한 작업 환경에서 청력을 보호하는 차단형 귀마개입니다." },
-  { id: "KM-VT-006", name: "안전조끼 (형광)", price: 8900, cat: "personal", catLabel: "개인안전용품", catPage: "products-personal.html", spec: "KS 표준", origin: "국내", badge: "", hit: false, photo: null,
+  { id: "KM-VT-006", name: "안전조끼 (형광)", price: 8900, cat: "personal", catLabel: "개인안전용품", catPage: "products-personal.html", spec: "KS 표준", origin: "국내", badge: "", hit: false, photo: PHOTOS.safetyVest,
     desc: "야간 및 저조도 현장에서 작업자의 시인성을 높여주는 형광 안전조끼입니다." },
   { id: "KM-GG-012", name: "방진고글", price: 11000, cat: "personal", catLabel: "개인안전용품", catPage: "products-personal.html", spec: "KC 인증", origin: "국내", badge: "", hit: false, photo: null,
     desc: "분진과 비산물로부터 눈을 보호하는 밀착형 방진고글입니다." },
-  { id: "KM-GL-019", name: "미끄럼방지 작업장갑", price: 4200, cat: "personal", catLabel: "개인안전용품", catPage: "products-personal.html", spec: "KS 표준", origin: "국내", badge: "", hit: true, photo: null,
+  { id: "KM-GL-019", name: "미끄럼방지 작업장갑", price: 4200, cat: "personal", catLabel: "개인안전용품", catPage: "products-personal.html", spec: "KS 표준", origin: "국내", badge: "", hit: true, photo: PHOTOS.workGloves,
     desc: "손바닥 코팅 처리로 그립력을 높인 미끄럼방지 작업장갑입니다." },
 
   // 소방안전용품

@@ -35,7 +35,7 @@ function renderSearchCard(p) {
       </div>
       <div class="product-card-actions">
         <a href="product-detail.html?id=${p.id}" class="btn-detail">상세보기</a>
-        <a href="index.html#contact" class="btn-quote">견적문의</a>
+        <a href="index.html?qname=${encodeURIComponent(p.name)}&qcode=${encodeURIComponent(p.id)}#contact" class="btn-quote">견적문의</a>
       </div>
     </div>
   </div>`;

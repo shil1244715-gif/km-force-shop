@@ -151,6 +151,57 @@ placeholder` + 카테고리별 SVG 아이콘) 마크업으로 교체함. `produc
 캐시 문제였을 가능성이 높음. 다음에 사용자가 비슷한 증상을 보고하면 먼저 하드 새로고침
 (Ctrl+Shift+R) 또는 시크릿창으로 재확인해보라고 안내할 것.
 
+**후속 진행 (같은 날)**: 사용자가 "이 12개 상품 실제 사진 보내달라"는 요청에 답으로, 원래
+히어로 캐러셀에 쓰던 사진 2장(hero-construction.jpg / hero-safety-gear.jpg와 동일한
+원본)을 다시 첨부함 — 새 사진이 아니라 이미 갖고 있던 사진 재전송이었음. 확인 질문 결과
+"안전용품 모아놓은 사진(안전모 여러개+안전화+조끼+장갑+보안경+마스크가 한 장에 같이
+있는 사진)에서 제품별로 잘라서 깨진 사진 자리에 채워달라"는 뜻이었고, 사용자가 "둘 다 —
+일단 이 사진으로 채우고 나중에 교체"를 선택함. 그래서 `hero-safety-gear.jpg`의 원본
+고해상도 사진(그룹샷)에서 아래 7개 품목을 크롭해서 로컬 파일로 저장함:
+`product-helmet-white.jpg`(KM-HM-001), `product-helmet-yellow.jpg`(KM-HM-003),
+`product-safety-boots.jpg`(KM-SH-014), `product-safety-vest.jpg`(KM-VT-006),
+`product-work-gloves.jpg`(KM-GL-019 — 코팅장갑이라 "미끄럼방지 작업장갑"에 매칭, 수입
+화학장갑 KM-GL-015에는 안 씀), `product-safety-goggles.jpg`(KM-GG-007),
+`product-dust-mask.jpg`(KM-MK-022 — 실제로는 방진마스크가 아니라 3M 방독마스크 사진이지만
+시각적으로 제일 가까움). `products-data.js`의 `PHOTOS`에 추가하고 해당 7개 상품의 `photo`
+필드를 채움, 정적 HTML(index.html 인기상품 3개, products-construction.html 3개,
+products-personal.html 4개)의 placeholder도 `<img>`로 되돌림.
+
+**아직 사진 없는 5개**(이 그룹샷에 없던 품목, 계속 placeholder 아이콘): KM-SB-005(안전대),
+KM-SG-009(안전표지판), KM-SR-011(비계용 안전난간대), KM-GL-015(내화학 안전장갑 — 수입
+화학장갑), KM-FE-001(분말 소화기). 이 5개는 나중에 실제 사진을 받으면 채워야 함.
+
+**한 장의 사진에서 여러 제품을 크롭하는 방식의 한계**: 이번처럼 임시방편으로는 괜찮지만,
+품목이 진짜 사진(전용 촬영)이 아니라 "다른 사진에서 잘라온 것"이라는 티가 날 수 있음
+(예: 안전모 사진에 "S-BUILD"라는 다른 회사 로고가 찍혀있음, 마스크는 사실 방독마스크).
+사용자에게 이미 한 번 안내했지만, 나중에 각 제품 전용 사진을 받으면
+`products-data.js`의 `PHOTOS` 객체 값만 새 파일명으로 바꾸면 전체 사이트에 반영됨.
+
+## 견적문의 자동 정보 전달 (2026-08-30 추가)
+
+사용자 요청: "'견적 문의하기'를 누르면 자동으로 품명과 코드가 따라오게" — 상품 카드/상세
+페이지의 "견적문의" 버튼을 누르면 홈의 문의폼(`#contact`)으로 이동하면서 어떤 상품을
+문의하는지 자동으로 채워지도록 구현함.
+
+동작 방식: 모든 "견적문의"/"견적 문의하기" 링크의 href를
+`index.html?qname=<상품명 URL인코딩>&qcode=<상품코드>#contact` 형태로 만듦. `script.js`가
+`index.html` 로드 시 이 쿼리파라미터를 읽어서 문의폼의 `textarea[name="message"]`에
+`[문의 제품] {상품명} (코드: {상품코드})`를 미리 채워넣고, 새로고침 시 다시 채워지지 않게
+`history.replaceState`로 주소창 쿼리를 정리함.
+
+이 링크를 만드는 곳이 여러 군데라 전부 같이 고쳐야 함 — 새 상품을 추가하거나 이 로직을
+고칠 때 아래 4곳을 빠짐없이 확인할 것:
+1. 정적 카드(index.html 인기상품, products-construction/personal/fire.html) — 각 카드의
+   "견적문의" `<a>` href에 그 카드 상품의 이름·코드가 하드코딩되어 있음.
+2. `search.js`의 `renderSearchCard()` — `p.name`/`p.id`로 동적 생성.
+3. `product-detail.js`의 관련상품("함께 찾는 상품") 템플릿 — `p.name`/`p.id`로 동적 생성.
+4. `product-detail.js`의 메인 "견적 문의하기" 버튼(`#quoteLink`) — 상품 로딩 시 JS로
+   href를 직접 설정(`product.name`/`product.id`).
+
+**참고**: 이 작업 하는 김에 `product-detail.js`의 "함께 찾는 상품" 카드도 원래는 사진이
+있어도 무조건 placeholder 아이콘만 보여주던 버그를 같이 고침 — 이제 `photoHtml()`을
+재사용해서 실제 사진이 있으면 보여줌 (상세페이지 목록 카드와 동일하게 동작).
+
 ## 실제 공급사 카탈로그 상품 등록 (K2/블랙야크/장화)
 
 사용자가 K2 안전화(57종), 블랙야크 YAK-501D, 장화 10종(대신/에스큐브/빅스탑/파인웰)이 담긴 PPT
