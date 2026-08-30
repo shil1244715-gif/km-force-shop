@@ -59,7 +59,9 @@ if (contactReset) {
 const heroCarousel = document.getElementById('heroCarousel');
 
 if (heroCarousel) {
+  const heroSection = heroCarousel.closest('.hero');
   const slides = heroCarousel.querySelectorAll('.hero-slide');
+  const photos = heroSection ? heroSection.querySelectorAll('.hero-photo') : [];
   const dots = heroCarousel.querySelectorAll('.hero-dot');
   const prevBtn = heroCarousel.querySelector('.hero-arrow-prev');
   const nextBtn = heroCarousel.querySelector('.hero-arrow-next');
@@ -70,6 +72,7 @@ if (heroCarousel) {
   function goToSlide(index) {
     current = (index + slides.length) % slides.length;
     slides.forEach((slide, i) => slide.classList.toggle('is-active', i === current));
+    photos.forEach((photo, i) => photo.classList.toggle('is-active', i === current));
     dots.forEach((dot, i) => dot.classList.toggle('is-active', i === current));
     restartTimer();
   }

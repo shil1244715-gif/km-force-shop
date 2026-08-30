@@ -79,6 +79,26 @@ background-image) 위에 `.hero-bg`를 겹치는 방식 — 사진이 없는 다
 말 것. 사진을 바꾸려면 같은 파일명으로 교체하거나 `style.css`의
 `.hero-photo-construction`/`.hero-photo-safety` 배경 이미지 경로만 바꾸면 됨.
 
+**홈 히어로는 사진도 텍스트 캐러셀과 같이 넘어감.** `index.html`에만 해당 — `.hero-photo`를 슬라이드
+개수만큼(3개: 건설현장/안전용품/건설현장 순서로 재사용) 나열해두고 `script.js`의 `goToSlide()`가
+`.hero-slide`·`.hero-dot`과 함께 `.hero-photo`도 index로 맞춰 `is-active`를 토글함(opacity
+crossfade, `.hero-photo`는 기본 opacity:0, `.is-active`만 1). `company-profile.html`처럼 캐러셀이
+없는 단일 히어로는 사진 1장에 `is-active`를 처음부터 박아두면 됨. 사진이 3장 이상 생기면
+`index.html`의 `.hero-photo` 3개를 그만큼 늘리기만 하면 JS는 그대로 동작함(개수를 슬라이드 수와
+맞추는 게 중요).
+
+## 상품 배지(뱃지)
+
+"BEST 1/2", "특가" 배지는 사용자 요청으로 전부 제거함 (검증 안 된 마케팅 문구라 판단 — 위
+"하지 말아야 할 것" 항목의 "확인 안 된 수치 지어내지 말 것"과 같은 맥락). `products-data.js`의
+`badge` 필드에서 `"BEST 1"`/`"BEST 2"`/`"특가"` 값을 전부 `""`로 비움, `index.html` /
+`products-construction.html` / `products-personal.html` / `products-fire.html`에 하드코딩돼
+있던 `<span class="product-badge">...</span>` 뱃지 태그도 제거함. `"NEW"` 배지는 그대로 유지 —
+사용자가 NEW는 빼달라고 하지 않았음. `search.js`/`product-detail.js`는 badge 값을 그대로 읽어서
+렌더링하는 구조라 데이터만 비웠고 코드는 안 건드림 — 앞으로 배지를 다시 넣게 되면
+`products-data.js`의 `badge` 필드만 채우면 전 페이지에 자동 반영됨(단, index.html 등 4개 파일의
+하드코딩된 카드는 별도로 다시 넣어야 함 — 이 카드들은 products-data.js를 안 읽는 정적 마크업).
+
 ## 미해결 항목 (다음 세션에서 이어갈 것)
 
 1. **사업영역 카드 이미지** — 사진 없이는 아이콘 일러스트로 보완할지 사용자 확인 대기 중
