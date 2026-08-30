@@ -63,6 +63,16 @@ cart.html / cart.js의 장바구니 인프라는 아직 코드에 남아있지�
 사이트 디자인 시스템과 그대로 맞물리게 하기 위함.
 앞으로 로고를 다시 바꿀 일이 있으면 `logo-icon.png` 파일만 교체하면 전 사이트에 반영됨.
 
+## 메인 사진 (히어로 배경)
+
+사용자가 보내준 실제 사진 2장을 히어로 배경으로 사용 중 (`hero-construction.jpg`: 건설현장 전경,
+`hero-safety-gear.jpg`: 안전용품 플랫레이). `index.html` 홈 히어로 = 건설현장 사진,
+`company-profile.html` 회사소개 히어로 = 안전용품 사진으로 매칭함. 구조는
+`.hero-photo`(사진, background-image) 위에 반투명해진 `.hero-bg`(기존 그라디언트, 텍스트 가독성용
+스크림 역할)를 겹치는 방식 — `.hero-photo`가 없는 다른 `.hero` 섹션은 `:not(:has(.hero-photo))`로
+기존 불투명 그라디언트를 그대로 유지하니 건드리지 말 것. 사진을 바꾸려면 같은 파일명으로
+교체하거나 `style.css`의 `.hero-photo-construction`/`.hero-photo-safety` 배경 이미지 경로만 바꾸면 됨.
+
 ## 미해결 항목 (다음 세션에서 이어갈 것)
 
 1. **사업영역 카드 이미지** — 사진 없이는 아이콘 일러스트로 보완할지 사용자 확인 대기 중
