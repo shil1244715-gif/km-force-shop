@@ -1387,29 +1387,26 @@ a {
   }
 }
 
-/* 상품마다 원본 상세 이미지 크기가 제각각이라(세로로 짧은 것~아주 긴 것) 페이지마다
-   보이는 크기가 들쑥날쑥했음. 프레임 높이를 고정하고 그 안에서 원본 비율 그대로
-   줄여서(항상 축소만 함, 확대는 안 함) 보여주면 화질 저하 없이 모든 상품이 같은
-   크기의 틀 안에 통일되게 보임. */
+/* 원본 상세 이미지가 전부 세로로 아주 긴 카탈로그 스캔(가로 187~500px, 세로
+   1500~4500px)이라, 높이를 고정하는 방식(이전 시도)으로는 이미지가 실처럼 가늘게
+   눌려버려서 오히려 이상해 보였음. 대신 "너비"를 모든 상품 공통으로 고정하면(세로
+   길이는 상품마다 다르게 자연스럽게 이어지되) 사진이 항상 같은 너비로 알아볼 수 있게
+   보이고, 페이지를 나란히 봐도 사진 크기가 일정하게 느껴짐. */
 .detail-info-image-wrap {
   margin-top: 32px;
-  height: 560px;
   display: flex;
-  align-items: center;
   justify-content: center;
   background: var(--color-bg-alt);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
   padding: 24px;
-  box-sizing: border-box;
 }
 
 .detail-info-image {
   display: block;
-  width: auto;
-  height: 100%;
+  width: 320px;
   max-width: 100%;
-  object-fit: contain;
+  height: auto;
 }
 
 .detail-info-image-caption {
@@ -1417,13 +1414,6 @@ a {
   font-size: 0.8rem;
   color: var(--color-text-muted);
   text-align: center;
-}
-
-@media (max-width: 720px) {
-  .detail-info-image-wrap {
-    height: 420px;
-    padding: 16px;
-  }
 }
 
 /* Delivery / exchange / return info (product-detail.html 공통 섹션) */
