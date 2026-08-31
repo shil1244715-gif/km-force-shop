@@ -14,12 +14,19 @@ if (navToggle && nav) {
   });
 }
 
-// Contact form — client-side validation + success/reset flow
+// Contact form — client-side validation + 실제 전송(구글 시트/메일 연동) + 성공/초기화 흐름
 const contactForm = document.getElementById('contactForm');
 const contactSuccess = document.getElementById('contactSuccess');
 const contactReset = document.getElementById('contactReset');
 
+// 문의하기 폼을 제출하면 이 주소(구글 앱스 스크립트 웹 앱)로 전송됩니다.
+// → 구글 시트에 자동 저장 + kmbiz2600@gmail.com 메일 알림
+const CONTACT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxfAK0-NvxKOS8knSwXUKMzA-QlQpiQG5d89kVdvXjcHAGojMtjs34f1JlCWxG75M2U/exec';
+
 if (contactForm && contactSuccess) {
+  const submitBtn = contactForm.querySelector('button[type="submit"]');
+  const submitBtnDefaultText = submitBtn ? submitBtn.textContent : '';
+
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -33,8 +40,34 @@ if (contactForm && contactSuccess) {
 
     if (hasError) return;
 
-    contactForm.hidden = true;
-    contactSuccess.hidden = false;
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = '전송 중...';
+    }
+
+    const formData = new FormData(contactForm);
+
+    // 구글 앱스 스크립트 웹 앱은 CORS 응답 헤더를 내려주지 않으므로
+    // no-cors 모드로 전송합니다. 응답 내용은 읽을 수 없지만
+    // 네트워크 요청 자체가 정상적으로 도착하면 서버(구글 시트/메일)에는 정상 반영됩니다.
+    fetch(CONTACT_ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: formData,
+    })
+      .then(() => {
+        contactForm.hidden = true;
+        contactSuccess.hidden = false;
+      })
+      .catch(() => {
+        alert('문의 전송 중 오류가 발생했습니다. 인터넷 연결을 확인하시고 다시 시도해 주세요.\n계속 안 되면 전화로 문의해 주세요.');
+      })
+      .finally(() => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = submitBtnDefaultText;
+        }
+      });
   });
 
   contactForm.querySelectorAll('[data-required]').forEach((input) => {

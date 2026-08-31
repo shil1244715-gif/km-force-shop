@@ -378,9 +378,43 @@ Specification 등)이 각각 임베드된 래스터 이미지로 들어있음. R
 큰 원본 소스가 생기면(예: 제조사에서 고해상도 원본을 받으면) 그걸로 교체하면 자동으로 더 크고
 선명하게 나옴 — 코드 수정 불필요.
 
+## 문의하기 폼 → 구글 시트/메일 연동 (2026-08-31 추가)
+
+기존 `index.html`의 `#contactForm`은 "제출하면 담당 메일로 전달됩니다"라고 문구는 있었지만,
+`script.js`가 `e.preventDefault()`만 하고 실제로는 아무 데도 전송하지 않던 **가짜 성공 처리**였음
+(사용자는 몰랐던 버그, 이번에 발견해서 알림). 사용자가 "구글연동되어 자동으로 저장되고 일을 할수
+있게" 요청 → Web3Forms 같은 제3자 서비스 대신, 사용자 본인 구글 계정(kmbiz2600@gmail.com)만으로
+되는 **구글 시트 + Apps Script 웹앱** 방식으로 구현.
+
+- 사용자가 만든 시트: "KM FORCE 문의 접수" (`docs.google.com/spreadsheets/d/1ORxBkhQx5oxt222uwUZZTLouG-Ka8iVYxl4cDFpwcyk`).
+  헤더(A~I): 날짜 / 회사명 / 담당자명 / 이메일 / 연락처 / 관심제품군 / 예상수량 / 희망납기 / 문의내용
+- Apps Script 프로젝트: "KM FORCE 문의 접수" (같은 시트에 바인딩). `doPost(e)`가 `e.parameter`로
+  받은 값을 시트에 `appendRow`하고, `MailApp.sendEmail`로 kmbiz2600@gmail.com에 알림 메일 발송.
+  전체 코드는 스크립트 안에 있음 — 필요시 그대로 재사용 가능.
+- 웹앱으로 배포(액세스: 모든 사용자). 배포 URL(`/exec`로 끝남)을 `script.js` 최상단
+  `CONTACT_ENDPOINT` 상수에 하드코딩함.
+- `script.js`의 `contactForm` submit 핸들러를 실제 `fetch(CONTACT_ENDPOINT, { method:'POST',
+  mode:'no-cors', body: new FormData(contactForm) })`로 교체. **`no-cors` 모드인 이유**: Apps
+  Script 웹앱은 CORS 응답 헤더를 안 주기 때문에 `cors` 모드로는 브라우저가 응답을 막음. `no-cors`로
+  보내면 응답 내용은 못 읽지만(항상 opaque), 요청 자체는 정상 도달해서 서버 쪽(시트 저장 + 메일
+  발송)은 문제없이 실행됨 — GAS 폼 연동의 표준 패턴.
+- **연결 확인 방법(중요, 매번 기억할 것)**: Apps Script 웹앱은 POST 시 302로
+  `script.googleusercontent.com/macros/echo?...`로 리다이렉트하는데, 이때 서버 함수(`doPost`)는
+  **이 302가 오기 전, 첫 번째 POST 요청 시점에 이미 실행 완료됨**. 즉 `curl -X POST .../exec -d
+  "..."`를 날려서 **HTTP 302**만 받으면(리다이렉트를 따라가지 않아도) 시트 저장 + 메일 발송은
+  이미 성공한 것 — 302를 따라가려고 `-L`을 쓰면 오히려 POST가 GET으로 바뀌면서 "Sorry, unable to
+  open the file" 같은 무관한 에러가 나서 헷갈릴 수 있음. **`-L` 없이 상태 코드만 확인**하는 게 맞는
+  테스트 방법.
+- 로컬 검증 시 이 방식으로 실제 배포 URL에 테스트 데이터 3~4건을 보내 302 확인함(정상 연동 확인).
+  이 과정에서 회사명이 "테스트회사(자동확인)" 등으로 된 테스트 행/메일이 실제 사용자의 시트와
+  메일함에 들어갔을 수 있음 — 사용자에게 안내해서 지우도록 안내할 것.
+
 ## 미해결 항목 (다음 세션에서 이어갈 것)
 
 1. **사업영역 카드 이미지** — 사진 없이는 아이콘 일러스트로 보완할지 사용자 확인 대기 중
+2. **카카오톡 채널 연동** — 사용자가 회사 카카오톡 채널(center-pf.kakao.com에서 개설 중)을 문의
+   방법으로 하나 더 추가하고 싶어함(기존 폼은 그대로 유지, 대체 아님). 채널 URL(`pf.kakao.com/_xxx`)
+   받으면 버튼/링크 추가할 것.
 2. ~~검색 결과 페이지~~ — 완료. `search.html` + `search.js` 추가, `products-data.js`의 `PRODUCTS`를
    `?q=` 쿼리로 필터링해 카드 렌더링. 결과 0건일 때는 카테고리 3종 + 문의 링크로 안내.
 3. ~~장바구니 정리~~ — 사용자 확인: **나중을 위해 그대로 유지**. cart.html/cart.js는 계속 코드에
