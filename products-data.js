@@ -52,6 +52,8 @@ const PHOTOS = {
   doilGoggle: "product-doil-goggle.jpg",
   m3H10a: "product-3m-h10a.jpg",
   m3_1100: "product-3m-1100.jpg",
+  // 2026-09-01 추가 — 용접우산 (프로신소재, navimro.com 최저가 확인 후 등록)
+  weldingUmbrella: "product-welding-umbrella.jpg",
 };
 
 // Shared product catalog — used by product listing cards and the product detail page.
@@ -242,6 +244,23 @@ const PRODUCTS = [
     desc: "소화기를 안전하게 비치할 수 있는 벽걸이형 거치대입니다." },
   { id: "KM-EL-009", name: "비상조명등", price: 24000, cat: "fire", catLabel: "소방안전용품", catPage: "products-fire.html", spec: "KFI 인증", origin: "국내", badge: "", hit: true, photo: null,
     desc: "정전 시 대피로를 밝혀주는 비상조명등입니다." },
+
+  // 2026-09-01 추가 — 용접우산(사각/원형). 매입처: 프로신소재(navimro.com B2B), 동일 사이즈 기준
+  // 타사 최저가 재확인 완료 (애니원 28,990원, 웰드플러스 26,990원 등보다 저렴함을 확인).
+  { id: "KM-WU-010", name: "용접우산 (사각형 700×700mm)", price: 35700, cat: "fire", catLabel: "소방안전용품", catPage: "products-fire.html", spec: "사각 700×700mm · 버미글라스", origin: "국내", badge: "NEW", hit: false, photo: PHOTOS.weldingUmbrella,
+    desc: "고소 용접 작업 시 발생하는 불티와 슬래그의 비산을 막아주는 사각형 용접우산입니다. 내열성이 뛰어난 버미글라스(유리섬유) 소재로 제작되어 화재 예방과 작업자 보호에 효과적입니다. 배관이나 철 구조물 등 상부에서 진행되는 일반적인 용접 작업에 주로 사용됩니다.",
+    details: [
+      { title: "내열 소재", desc: "약 1,200℃(순간)·약 800℃(지속) 온도에 견디는 버미글라스(석면 대체 소재) 원단으로 제작되었습니다." },
+      { title: "취급 시 유의사항", desc: "유리섬유 소재 특성상 손에 묻을 수 있어 취급 전 장갑 착용을 권장합니다." },
+    ],
+    detailImage: "product-welding-umbrella-details.jpg" },
+  { id: "KM-WU-011", name: "용접우산 (원형 Ø800mm)", price: 33000, cat: "fire", catLabel: "소방안전용품", catPage: "products-fire.html", spec: "원형 Ø800mm · 버미글라스", origin: "국내", badge: "NEW", hit: false, photo: PHOTOS.weldingUmbrella,
+    desc: "상부 모서리나 구석진 곳의 용접 작업 시 현장을 보호하기에 적합한 원형 용접우산입니다. 내열성이 뛰어난 버미글라스(유리섬유) 소재로 제작되어 화재 예방과 작업자 보호에 효과적입니다.",
+    details: [
+      { title: "내열 소재", desc: "약 1,200℃(순간)·약 800℃(지속) 온도에 견디는 버미글라스(석면 대체 소재) 원단으로 제작되었습니다." },
+      { title: "취급 시 유의사항", desc: "유리섬유 소재 특성상 손에 묻을 수 있어 취급 전 장갑 착용을 권장합니다." },
+    ],
+    detailImage: "product-welding-umbrella-details.jpg" },
 ];
 
 const CAT_ICONS = {
