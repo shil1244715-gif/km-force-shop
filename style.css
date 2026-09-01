@@ -1403,7 +1403,7 @@ a {
 
 .detail-info-image {
   display: block;
-  width: 480px;
+  width: clamp(220px, 70vw, 480px);
   max-width: 100%;
   height: auto;
 }
