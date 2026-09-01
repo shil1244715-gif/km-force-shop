@@ -76,7 +76,7 @@ function relatedBadgeHtml(p) {
     if (hasDetailImage && detailInfoImageWrap) {
       detailInfoImageWrap.innerHTML = `
         <img src="${product.detailImage}" alt="${product.name} 제조사 제공 상세 이미지" class="detail-info-image">
-        <p class="detail-info-image-caption">제조사(K2 세이프티) 제공 자료</p>
+        <p class="detail-info-image-caption">제조사 제공 자료</p>
       `;
       detailInfoImageWrap.hidden = false;
     }
