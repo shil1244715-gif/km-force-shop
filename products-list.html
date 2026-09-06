@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>전체 제품 | KM FORCE</title>
+<style>
+  :root{
+    --ink:#1a1d1f;
+    --sub:#6b7178;
+    --line:#e6e8eb;
+    --bg:#ffffff;
+    --panel:#f6f7f8;
+    --accent:#d5561c;
+    --accent-dark:#b8460f;
+    --navy:#12233f;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif;color:var(--ink);background:var(--bg);}
+  a{color:inherit;text-decoration:none;}
+
+  .topbar{background:var(--navy);color:#fff;font-size:13px;padding:8px 24px;display:flex;justify-content:space-between;max-width:1120px;margin:0 auto;}
+  header.site{border-bottom:1px solid var(--line);padding:16px 24px;}
+  .site-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+  .brand{font-weight:800;font-size:20px;letter-spacing:-0.02em;}
+  .brand .dot{color:var(--accent);}
+  nav.site-nav a{margin-left:28px;font-size:14px;font-weight:600;color:var(--sub);}
+
+  main{max-width:1120px;margin:0 auto;padding:32px 24px 80px;}
+  h1{font-size:24px;margin:0 0 4px;}
+  .sub{color:var(--sub);font-size:14px;margin-bottom:24px;}
+
+  .tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
+  .tab{
+    padding:9px 16px;border-radius:999px;font-size:13px;font-weight:700;
+    border:1px solid var(--line);cursor:pointer;color:var(--sub);background:#fff;
+  }
+  .tab.active{background:var(--navy);border-color:var(--navy);color:#fff;}
+
+  .search{
+    width:100%;max-width:320px;padding:10px 14px;border:1px solid var(--line);
+    border-radius:4px;font-size:14px;margin-bottom:24px;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
+    gap:20px;
+  }
+  .card{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff;}
+  .card .thumb{aspect-ratio:1/1;background:var(--panel);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .card .thumb img{width:100%;height:100%;object-fit:contain;}
+  .card .body{padding:12px 14px 16px;}
+  .card .cat{font-size:11px;color:var(--accent);font-weight:700;margin-bottom:4px;display:block;}
+  .card .name{font-size:14px;font-weight:600;line-height:1.4;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.8em;}
+  .card .code{font-size:12px;color:var(--sub);margin-top:6px;}
+  .card:hover{border-color:var(--navy);}
+
+  .count{font-size:13px;color:var(--sub);margin-bottom:14px;}
+
+  footer.site{border-top:1px solid var(--line);padding:28px 24px;text-align:center;color:var(--sub);font-size:13px;}
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <span>CS센터 032-710-1393 · 평일 09:00~18:00</span>
+    <span>KM FORCE</span>
+  </div>
+
+  <header class="site">
+    <div class="site-inner">
+      <a class="brand" href="index.html">KM FORCE<span class="dot">.</span></a>
+      <nav class="site-nav">
+        <a href="company-profile.html">회사소개</a>
+        <a href="products-list.html">제품</a>
+        <a href="index.html#contact">문의</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>전체 제품</h1>
+    <div class="sub">K2 · 블랙야크 · 안전장화 브랜드 카탈로그 전체 목록</div>
+
+    <input class="search" id="search" placeholder="제품명으로 검색…">
+    <div class="tabs" id="tabs"></div>
+    <div class="count" id="count"></div>
+    <div class="grid" id="grid"></div>
+  </main>
+
+  <footer class="site">
+    (주)케이엠산업 KM FORCE · 인천광역시 동구 방축로83번길 23 · 032-710-1393
+  </footer>
+
+<script>
+let PRODUCTS = [];
+let currentBrand = 'all';
+
+async function init(){
+  const res = await fetch('products.json');
+  PRODUCTS = await res.json();
+
+  const params = new URLSearchParams(window.location.search);
+  const brandParam = params.get('brand');
+
+  const brands = ['all', ...new Set(PRODUCTS.map(p => p.brand))];
+  const tabs = document.getElementById('tabs');
+  tabs.innerHTML = brands.map(b => `<div class="tab" data-brand="${b}">${b === 'all' ? '전체' : b}</div>`).join('');
+  tabs.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+    currentBrand = t.dataset.brand;
+    render();
+  }));
+
+  if(brandParam && brands.includes(brandParam)) currentBrand = brandParam;
+
+  document.getElementById('search').addEventListener('input', render);
+  render();
+}
+
+function render(){
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.brand === currentBrand));
+  const q = document.getElementById('search').value.trim().toLowerCase();
+
+  let list = PRODUCTS;
+  if(currentBrand !== 'all') list = list.filter(p => p.brand === currentBrand);
+  if(q) list = list.filter(p => p.name.toLowerCase().includes(q) || p.id.toLowerCase().includes(q));
+
+  document.getElementById('count').textContent = `${list.length}개 제품`;
+  document.getElementById('grid').innerHTML = list.map(p => `
+    <a class="card" href="product-detail-template.html?id=${encodeURIComponent(p.id)}">
+      <div class="thumb"><img src="${p.image}" alt="${p.name}" loading="lazy"></div>
+      <div class="body">
+        <span class="cat">${p.category}</span>
+        <div class="name">${p.name}</div>
+        <div class="code">${p.id}</div>
+      </div>
+    </a>
+  `).join('');
+}
+
+init();
+</script>
+</body>
+</html>

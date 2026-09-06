@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>제품 상세 | KM FORCE</title>
+<style>
+  :root{
+    --ink:#1a1d1f;
+    --sub:#6b7178;
+    --line:#e6e8eb;
+    --bg:#ffffff;
+    --panel:#f6f7f8;
+    --accent:#d5561c;      /* safety-orange, matches K2/BOA hardware tones in product photos */
+    --accent-dark:#b8460f;
+    --navy:#12233f;        /* KM FORCE brand navy from site header */
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+  }
+  a{color:inherit;text-decoration:none;}
+
+  .topbar{
+    background:var(--navy);
+    color:#fff;
+    font-size:13px;
+    padding:8px 24px;
+    display:flex;
+    justify-content:space-between;
+    max-width:1120px;
+    margin:0 auto;
+  }
+  .topbar span{opacity:.85;}
+
+  header.site{
+    border-bottom:1px solid var(--line);
+    padding:16px 24px;
+  }
+  .site-inner{
+    max-width:1120px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    font-weight:800;
+    font-size:20px;
+    letter-spacing:-0.02em;
+  }
+  .brand .dot{color:var(--accent);}
+  nav.site-nav a{
+    margin-left:28px;
+    font-size:14px;
+    font-weight:600;
+    color:var(--sub);
+  }
+
+  main{max-width:1120px;margin:0 auto;padding:32px 24px 80px;}
+
+  .crumb{
+    font-size:13px;
+    color:var(--sub);
+    margin-bottom:24px;
+  }
+  .crumb a:hover{color:var(--accent);}
+
+  .detail{
+    display:grid;
+    grid-template-columns:480px 1fr;
+    gap:56px;
+  }
+  @media (max-width:860px){
+    .detail{grid-template-columns:1fr;gap:28px;}
+  }
+
+  .media .frame{
+    aspect-ratio:1/1;
+    background:var(--panel);
+    border-radius:4px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .media .frame img{
+    width:100%;height:100%;object-fit:contain;
+  }
+
+  .info .category-tag{
+    display:inline-block;
+    font-size:12px;
+    font-weight:700;
+    color:var(--accent);
+    background:#fbe9e0;
+    padding:4px 10px;
+    border-radius:3px;
+    margin-bottom:14px;
+  }
+  .info h1{
+    font-size:28px;
+    line-height:1.35;
+    margin:0 0 6px;
+    letter-spacing:-0.01em;
+  }
+  .info .brand-line{
+    font-size:14px;
+    color:var(--sub);
+    margin-bottom:24px;
+  }
+
+  .price-box{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:20px 0;
+    margin-bottom:24px;
+  }
+  .price-row{display:flex;align-items:baseline;gap:10px;}
+  .price-value{font-size:26px;font-weight:800;}
+  .price-note{font-size:13px;color:var(--sub);}
+  .price-pending{font-size:16px;color:var(--sub);font-weight:600;}
+
+  table.spec{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14px;
+    margin-bottom:28px;
+  }
+  table.spec th, table.spec td{
+    text-align:left;
+    padding:11px 4px;
+    border-bottom:1px solid var(--line);
+  }
+  table.spec th{
+    width:110px;
+    color:var(--sub);
+    font-weight:600;
+  }
+
+  .cta-row{display:flex;gap:10px;}
+  .btn{
+    flex:1;
+    padding:15px 18px;
+    border-radius:4px;
+    font-size:15px;
+    font-weight:700;
+    text-align:center;
+    cursor:pointer;
+    border:1px solid var(--line);
+    background:#fff;
+  }
+  .btn.primary{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#fff;
+  }
+  .btn.primary:hover{background:var(--accent-dark);}
+  .btn.ghost:hover{border-color:var(--navy);}
+
+  .callout{
+    margin-top:18px;
+    font-size:13px;
+    color:var(--sub);
+    background:var(--panel);
+    padding:12px 14px;
+    border-radius:4px;
+  }
+
+  footer.site{
+    border-top:1px solid var(--line);
+    padding:28px 24px;
+    text-align:center;
+    color:var(--sub);
+    font-size:13px;
+  }
+
+  .state-msg{
+    padding:120px 20px;
+    text-align:center;
+    color:var(--sub);
+    font-size:15px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <span>CS센터 032-710-1393 · 평일 09:00~18:00</span>
+    <span>KM FORCE</span>
+  </div>
+
+  <header class="site">
+    <div class="site-inner">
+      <a class="brand" href="index.html">KM FORCE<span class="dot">.</span></a>
+      <nav class="site-nav">
+        <a href="company-profile.html">회사소개</a>
+        <a href="products-list.html">제품</a>
+        <a href="index.html#contact">문의</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="app">
+    <div class="state-msg" id="loading">제품 정보를 불러오는 중입니다…</div>
+  </main>
+
+  <footer class="site">
+    (주)케이엠산업 KM FORCE · 인천광역시 동구 방축로83번길 23 · 032-710-1393
+  </footer>
+
+<script>
+async function init(){
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  const app = document.getElementById('app');
+
+  let products;
+  try{
+    const res = await fetch('products.json');
+    products = await res.json();
+  }catch(e){
+    app.innerHTML = '<div class="state-msg">제품 데이터를 불러오지 못했습니다. products.json 파일 위치를 확인해 주세요.</div>';
+    return;
+  }
+
+  const product = products.find(p => p.id === id);
+  if(!product){
+    app.innerHTML = '<div class="state-msg">해당 제품을 찾을 수 없습니다.<br><a href="products-list.html" style="color:var(--accent)">전체 제품 목록으로 돌아가기</a></div>';
+    return;
+  }
+
+  document.title = product.name + ' | KM FORCE';
+
+  const priceHtml = product.price
+    ? `<div class="price-row"><span class="price-value">${Number(product.price).toLocaleString()}원</span><span class="price-note">(부가세별도)</span></div>`
+    : `<div class="price-row"><span class="price-pending">가격 문의</span></div>`;
+
+  app.innerHTML = `
+    <div class="crumb">
+      <a href="index.html">홈</a> &nbsp;/&nbsp;
+      <a href="products-list.html">제품</a> &nbsp;/&nbsp;
+      <a href="products-list.html?brand=${encodeURIComponent(product.brand)}">${product.brand}</a> &nbsp;/&nbsp;
+      ${product.name}
+    </div>
+    <div class="detail">
+      <div class="media">
+        <div class="frame"><img src="${product.image}" alt="${product.name}"></div>
+      </div>
+      <div class="info">
+        <span class="category-tag">${product.category}</span>
+        <h1>${product.name}</h1>
+        <div class="brand-line">브랜드 · ${product.brand} &nbsp;|&nbsp; 코드 ${product.id}</div>
+
+        <div class="price-box">${priceHtml}</div>
+
+        <table class="spec">
+          <tr><th>제품코드</th><td>${product.id}</td></tr>
+          <tr><th>브랜드</th><td>${product.brand}</td></tr>
+          <tr><th>분류</th><td>${product.category}</td></tr>
+          <tr><th>원산지</th><td>확인 후 기재</td></tr>
+          <tr><th>규격/인증</th><td>확인 후 기재</td></tr>
+        </table>
+
+        <div class="cta-row">
+          <a class="btn ghost" href="tel:032-710-1393">☎ 전화문의</a>
+          <a class="btn primary" href="index.html?qname=${encodeURIComponent(product.name)}&qcode=${encodeURIComponent(product.id)}#contact">견적문의</a>
+        </div>
+
+        <div class="callout">
+          ※ 가격·원산지·인증 정보는 매입처 확인 후 업데이트 예정입니다. 최저가 비교 검증 완료 전까지는 노출 가격을 최종가로 사용하지 마세요.
+        </div>
+      </div>
+    </div>
+  `;
+}
+init();
+</script>
+</body>
+</html>
